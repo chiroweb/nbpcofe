@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(curl:*)",
+      "Bash(npx:*)",
+      "Bash(cp:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(sleep:*)",
+      "Bash(unzip -l \"c:/Users/chltl/Downloads/Pretendard-1.3.9.zip\")",
+      "Bash(powershell.exe -Command \"Get-ChildItem 'C:\\\\Users\\\\chltl\\\\Downloads\\\\' | Where-Object { \\\\$_.Name -like '*retend*' }\")",
+      "Bash(powershell.exe -Command \"Get-ChildItem 'C:\\\\Users\\\\chltl\\\\Downloads\\\\' | Select-Object -First 30 Name\")",
+      "Bash(powershell.exe -Command \"Get-ChildItem 'C:\\\\Users\\\\chltl\\\\Downloads\\\\' | Where-Object { \\\\$_.Name -like '*Pretendard*' -or \\\\$_.Name -like '*pretendard*' } | Select-Object Name\")",
+      "Bash(unzip -l \"C:/Users/chltl/OneDrive/Desktop/FA/Pretendard-1.3.9.zip\")",
+      "Bash(mkdir -p \"C:/Users/chltl/OneDrive/Desktop/FA/public/fonts\")",
+      "Bash(unzip -jo \"C:/Users/chltl/OneDrive/Desktop/FA/Pretendard-1.3.9.zip\" \"web/variable/woff2/PretendardVariable.woff2\" -d \"C:/Users/chltl/OneDrive/Desktop/FA/public/fonts/\")",
+      "Bash(unzip -l \"C:/Users/chltl/OneDrive/Desktop/FA/FreesentationVF-2.001.zip\")",
+      "Bash(unzip:*)",
+      "Bash(pip install:*)",
+      "Bash(python3:*)",
+      "Bash(PYTHONIOENCODING=utf-8 python3 -c \"\nimport fitz\ndoc = fitz.open\\(r'c:\\\\Users\\\\chltl\\\\OneDrive\\\\Desktop\\\\AFTERBUNNER\\\\[NBPKOREA] Afterburner Catalogue 2019 \\(국문\\).pdf'\\)\nfor i, page in enumerate\\(doc\\):\n    text = page.get_text\\(\\)\n    if text.strip\\(\\):\n        print\\(f'--- Page {i+1} ---'\\)\n        print\\(text\\)\n\")",
+      "Bash(PYTHONIOENCODING=utf-8 python3 -c \"\nimport fitz\ndoc = fitz.open\\(r'c:\\\\Users\\\\chltl\\\\OneDrive\\\\Desktop\\\\AFTERBUNNER\\\\2024 회사소개서\\(국문\\) - 추후 수정 예정.pdf'\\)\nfor i, page in enumerate\\(doc\\):\n    text = page.get_text\\(\\)\n    if text.strip\\(\\):\n        print\\(f'--- Page {i+1} ---'\\)\n        print\\(text\\)\n\")",
+      "Bash(aws s3:*)",
+      "Bash(aws configure:*)"
+    ]
+  }
+}
