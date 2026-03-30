@@ -20,19 +20,18 @@ import { PRODUCT_DETAILS } from "@/lib/constants";
 type ProductType = (typeof PRODUCT_DETAILS)[number];
 type ModelType = ProductType["models"][number];
 
-function ModelAccordion({ model, isSelected, onSelect }: { model: ModelType; isSelected?: boolean; onSelect?: () => void }) {
+function ModelAccordion({ model }: { model: ModelType }) {
   const [open, setOpen] = useState(false);
+  const [viewIdx, setViewIdx] = useState(0);
   const specs = "specs" in model ? (model as any).specs : null;
-  const hasImages = "images" in model && ((model as any).images as string[]).length > 0;
+  const images: string[] = "images" in model ? (model as any).images ?? [] : [];
+  const hasContent = specs || images.length > 0;
 
   return (
     <div className="overflow-hidden">
       <button
-        onClick={() => {
-          if (onSelect && hasImages) onSelect();
-          if (specs) setOpen(!open);
-        }}
-        className={`w-full flex items-center justify-between py-4 text-left group transition-colors ${isSelected ? "bg-accent-light/30 -mx-3 px-3 rounded-lg" : ""}`}
+        onClick={() => hasContent && setOpen(!open)}
+        className="w-full flex items-center justify-between py-4 text-left group"
       >
         <div className="flex items-center gap-2 min-w-0">
           <span className="font-mono text-sm font-medium whitespace-nowrap">
@@ -41,12 +40,12 @@ function ModelAccordion({ model, isSelected, onSelect }: { model: ModelType; isS
           <span className="font-mono text-xs text-accent whitespace-nowrap">
             {model.capacity}
           </span>
-          {hasImages && <span className="text-[10px] text-muted/60">📷</span>}
+          {images.length > 0 && <span className="text-[10px] text-muted/60">📷 {images.length}</span>}
           <span className="text-xs text-muted truncate hidden sm:inline">
             · {model.target}
           </span>
         </div>
-        {specs && (
+        {hasContent && (
           <m.div
             animate={{ rotate: open ? 180 : 0 }}
             transition={{ duration: 0.2 }}
@@ -58,7 +57,7 @@ function ModelAccordion({ model, isSelected, onSelect }: { model: ModelType; isS
       </button>
 
       <AnimatePresence>
-        {open && specs && (
+        {open && (
           <m.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
@@ -66,21 +65,67 @@ function ModelAccordion({ model, isSelected, onSelect }: { model: ModelType; isS
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="pb-4 pl-2 grid grid-cols-2 gap-x-6 gap-y-1.5">
-              {Object.entries(specs).map(([key, value]) => {
-                const labelMap: Record<string, string> = {
-                  code: "코드", size: "크기", weight: "무게",
-                  power: "전력", burner: "버너", gas_lpg: "LPG",
-                  gas_ng: "도시가스", control: "제어",
-                  controller: "컨트롤러", connector: "연료",
-                };
-                return (
-                  <div key={key} className="flex items-baseline justify-between">
-                    <span className="text-[11px] text-muted">{labelMap[key] || key}</span>
-                    <span className="text-[11px] font-mono text-foreground/70">{value as string}</span>
+            <div className="pb-5 space-y-4">
+              {/* Inline photo gallery */}
+              {images.length > 0 && (
+                <div>
+                  <div className="overflow-hidden rounded-xl border border-border/50 bg-background">
+                    <div className="relative aspect-[4/3] w-full flex items-center justify-center">
+                      <AnimatePresence mode="wait">
+                        <m.img
+                          key={viewIdx}
+                          src={images[viewIdx]}
+                          alt={`${model.name} ${viewIdx + 1}`}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="h-full w-full object-contain"
+                          loading="lazy"
+                        />
+                      </AnimatePresence>
+                    </div>
                   </div>
-                );
-              })}
+                  {images.length > 1 && (
+                    <div className="mt-2 flex gap-1.5 flex-wrap">
+                      {images.map((img, i) => (
+                        <button
+                          key={i}
+                          onClick={() => setViewIdx(i)}
+                          className={`overflow-hidden rounded-lg border transition-all ${
+                            viewIdx === i
+                              ? "border-accent ring-1 ring-accent/30"
+                              : "border-border/50 opacity-50 hover:opacity-100"
+                          }`}
+                        >
+                          <div className="w-14 h-10 overflow-hidden bg-background flex items-center justify-center">
+                            <img src={img} alt="" className="h-full w-full object-contain" loading="lazy" />
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+              {/* Specs */}
+              {specs && (
+                <div className="pl-2 grid grid-cols-2 gap-x-6 gap-y-1.5">
+                  {Object.entries(specs).map(([key, value]) => {
+                    const labelMap: Record<string, string> = {
+                      code: "코드", size: "크기", weight: "무게",
+                      power: "전력", burner: "버너", gas_lpg: "LPG",
+                      gas_ng: "도시가스", control: "제어",
+                      controller: "컨트롤러", connector: "연료",
+                    };
+                    return (
+                      <div key={key} className="flex items-baseline justify-between">
+                        <span className="text-[11px] text-muted">{labelMap[key] || key}</span>
+                        <span className="text-[11px] font-mono text-foreground/70">{value as string}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </m.div>
         )}
@@ -89,9 +134,11 @@ function ModelAccordion({ model, isSelected, onSelect }: { model: ModelType; isS
   );
 }
 
-function SupremeSpecsCard({ product, onSelect, isSelected }: { product: ProductType; onSelect?: () => void; isSelected?: boolean }) {
+function SupremeSpecsCard({ product }: { product: ProductType }) {
   const [open, setOpen] = useState(false);
+  const [viewIdx, setViewIdx] = useState(0);
   const supremeSpecs = "supremeSpecs" in product ? (product as any).supremeSpecs : null;
+  const supremeImages: string[] = "supremeImages" in product ? (product as any).supremeImages ?? [] : [];
   if (!supremeSpecs) return null;
 
   const labelMap: Record<string, string> = {
@@ -112,9 +159,9 @@ function SupremeSpecsCard({ product, onSelect, isSelected }: { product: ProductT
   };
 
   return (
-    <div className={`rounded-2xl border overflow-hidden ${isSelected ? "border-accent bg-accent-light/50" : "border-accent/20 bg-accent-light/30"}`}>
+    <div className="rounded-2xl border border-accent/20 bg-accent-light/30 overflow-hidden">
       <button
-        onClick={() => { setOpen(!open); if (onSelect) onSelect(); }}
+        onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-accent-light/50 transition-colors"
       >
         <div>
@@ -140,8 +187,47 @@ function SupremeSpecsCard({ product, onSelect, isSelected }: { product: ProductT
             transition={{ duration: 0.25 }}
             className="overflow-hidden"
           >
-            <div className="px-5 md:px-6 pb-5 md:pb-6 border-t border-accent/10">
-              <div className="pt-4 divide-y divide-accent/10">
+            <div className="px-5 md:px-6 pb-5 md:pb-6 border-t border-accent/10 space-y-4">
+              {/* Supreme inline gallery */}
+              {supremeImages.length > 0 && (
+                <div className="pt-4">
+                  <div className="overflow-hidden rounded-xl border border-border/50 bg-background">
+                    <div className="relative aspect-[4/3] w-full flex items-center justify-center">
+                      <AnimatePresence mode="wait">
+                        <m.img
+                          key={viewIdx}
+                          src={supremeImages[viewIdx]}
+                          alt={`Supreme ${viewIdx + 1}`}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="h-full w-full object-contain"
+                          loading="lazy"
+                        />
+                      </AnimatePresence>
+                    </div>
+                  </div>
+                  {supremeImages.length > 1 && (
+                    <div className="mt-2 flex gap-1.5 flex-wrap">
+                      {supremeImages.map((img, i) => (
+                        <button
+                          key={i}
+                          onClick={() => setViewIdx(i)}
+                          className={`overflow-hidden rounded-lg border transition-all ${
+                            viewIdx === i ? "border-accent ring-1 ring-accent/30" : "border-border/50 opacity-50 hover:opacity-100"
+                          }`}
+                        >
+                          <div className="w-14 h-10 overflow-hidden bg-background flex items-center justify-center">
+                            <img src={img} alt="" className="h-full w-full object-contain" loading="lazy" />
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+              <div className={`divide-y divide-accent/10 ${supremeImages.length === 0 ? "pt-4" : ""}`}>
                 {Object.entries(supremeSpecs).map(([key, value]) => (
                   <div
                     key={key}
@@ -172,29 +258,9 @@ function ProductSection({
   index: number;
 }) {
   const [activeImage, setActiveImage] = useState(0);
-  const [selectedModelIdx, setSelectedModelIdx] = useState<number | null>(null);
   const isReversed = index % 2 === 1;
   const compatibleBrands = "compatibleBrands" in product ? (product as any).compatibleBrands as string[] : null;
-
-  // Determine which images to show based on selected model
-  const selectedModel = selectedModelIdx !== null ? product.models[selectedModelIdx] : null;
-  const modelImages = selectedModel && "images" in selectedModel ? (selectedModel as any).images as string[] : [];
-  const supremeImages = "supremeImages" in product ? (product as any).supremeImages as string[] : [];
-  const displayImages = selectedModelIdx === -1
-    ? supremeImages
-    : modelImages.length > 0
-      ? modelImages
-      : [product.image, ...product.gallery.filter(Boolean)];
-
-  function handleModelSelect(idx: number) {
-    if (selectedModelIdx === idx) {
-      setSelectedModelIdx(null);
-      setActiveImage(0);
-    } else {
-      setSelectedModelIdx(idx);
-      setActiveImage(0);
-    }
-  }
+  const displayImages = [product.image, ...product.gallery.filter(Boolean)];
 
   return (
     <section
@@ -313,29 +379,11 @@ function ProductSection({
               </div>
             </div>
 
-            {/* Selected model label */}
-            {selectedModel && (
-              <div className="mt-3 flex items-center gap-2">
-                <span className="text-xs font-mono text-accent">{selectedModel.name} · {selectedModel.capacity}</span>
-                <button onClick={() => { setSelectedModelIdx(null); setActiveImage(0); }} className="text-[10px] text-muted hover:text-foreground transition-colors">
-                  전체 보기
-                </button>
-              </div>
-            )}
-            {selectedModelIdx === -1 && (
-              <div className="mt-3 flex items-center gap-2">
-                <span className="text-xs font-mono text-accent">Supreme 시리즈</span>
-                <button onClick={() => { setSelectedModelIdx(null); setActiveImage(0); }} className="text-[10px] text-muted hover:text-foreground transition-colors">
-                  전체 보기
-                </button>
-              </div>
-            )}
-
             {/* Thumbnail strip */}
             <div className="mt-4 flex gap-2 flex-wrap">
               {displayImages.map((img, i) => (
                 <button
-                  key={`${selectedModelIdx}-${i}`}
+                  key={i}
                   onClick={() => setActiveImage(i)}
                   className={`overflow-hidden rounded-xl border transition-all ${
                     activeImage === i
@@ -395,16 +443,13 @@ function ProductSection({
                   모델 라인업
                 </h3>
                 {"supremeSpecs" in product && (
-                  <SupremeSpecsCard product={product} onSelect={() => handleModelSelect(-1)} isSelected={selectedModelIdx === -1} />
+                  <SupremeSpecsCard product={product} />
                 )}
                 <div className="divide-y divide-border">
-                  {product.models.map((model, mIdx) => (
-                    <ModelAccordion key={model.name} model={model} isSelected={selectedModelIdx === mIdx} onSelect={() => handleModelSelect(mIdx)} />
+                  {product.models.map((model) => (
+                    <ModelAccordion key={model.name} model={model} />
                   ))}
                 </div>
-                {product.models.length > 0 && (
-                  <p className="mt-3 text-[11px] text-muted/50">📷 표시된 모델을 클릭하면 해당 모델의 사진을 볼 수 있습니다</p>
-                )}
               </>
             )}
           </m.div>
