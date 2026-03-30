@@ -31,7 +31,7 @@ export default function BrandIntro() {
 
             <div className="mt-8 space-y-5 text-base text-muted leading-relaxed max-w-[55ch]">
               <p>
-                NBP_COFFEE는 2019년 서울 성수동에서 시작했습니다. 커피 로스팅
+                NBP_COFFEE는 2013년 서울의 한 카페에서 시작했습니다. 커피를 직접 로스팅
                 장비를 직접 사용하며 느낀 불편함에서 출발해, 현장의 요구를 반영한
                 장비를 설계하고 제작합니다.
               </p>
@@ -41,9 +41,9 @@ export default function BrandIntro() {
                 전 과정을 직접 관리하기 때문에, 품질에 대한 약속을 지킬 수 있습니다.
               </p>
               <p>
-                전국 120곳이 넘는 카페와 로스터리에 장비를 납품했습니다. 설치
+                전국 300곳이 넘는 카페와 로스터리에 장비를 납품했습니다. 설치
                 이후에도 정기 점검과 부품 교체를 통해 장비의 수명 전체를
-                책임집니다.
+                책임집니다. 
               </p>
             </div>
 
@@ -78,14 +78,13 @@ export default function BrandIntro() {
           <m.div variants={slideInRightVariants} className="relative">
             <div className="overflow-hidden rounded-[2rem] border border-border/50 bg-surface p-2 md:p-3">
               <div className="overflow-hidden rounded-[1.5rem]">
-                <div className="relative aspect-square w-full overflow-hidden bg-background flex items-center justify-center">
+                <div className="relative aspect-[4/5] w-full overflow-hidden">
                   <img
-                    src="https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%E1%84%8B%E1%85%A2%E1%84%91%E1%85%B3%E1%84%90%E1%85%A5%E1%84%87%E1%85%A5%E1%84%82%E1%85%A5+3D%E1%84%85%E1%85%A2%E1%86%AB%E1%84%83%E1%85%A5%E1%84%85%E1%85%B5%E1%86%BC+%E1%84%83%E1%85%A2%E1%84%91%E1%85%AD%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.png"
-                    alt="애프터버너 3D 렌더링"
-                    className="h-full w-full object-contain"
+                    src="https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/brand-intro.png"
+                    alt="NBP Korea 작업 환경"
+                    className="h-full w-full object-cover"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent mix-blend-multiply" />
                 </div>
               </div>
             </div>
