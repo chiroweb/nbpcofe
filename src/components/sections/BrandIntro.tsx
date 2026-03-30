@@ -78,11 +78,11 @@ export default function BrandIntro() {
           <m.div variants={slideInRightVariants} className="relative">
             <div className="overflow-hidden rounded-[2rem] border border-border/50 bg-surface p-2 md:p-3">
               <div className="overflow-hidden rounded-[1.5rem]">
-                <div className="relative aspect-[3/4] w-full overflow-hidden">
+                <div className="relative aspect-square w-full overflow-hidden bg-background flex items-center justify-center">
                   <img
                     src="https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%E1%84%8B%E1%85%A2%E1%84%91%E1%85%B3%E1%84%90%E1%85%A5%E1%84%87%E1%85%A5%E1%84%82%E1%85%A5+3D%E1%84%85%E1%85%A2%E1%86%AB%E1%84%83%E1%85%A5%E1%84%85%E1%85%B5%E1%86%BC+%E1%84%83%E1%85%A2%E1%84%91%E1%85%AD%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.png"
                     alt="애프터버너 3D 렌더링"
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-contain"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent mix-blend-multiply" />

@@ -66,7 +66,7 @@ export default function HeroVideo() {
           >
             로스팅의
             <br />
-            <span className="italic font-light">모든 환경</span>을
+            모든 환경을
             <br />
             설계합니다
           </m.h1>
