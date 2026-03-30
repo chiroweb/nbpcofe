@@ -35,7 +35,7 @@ export default function HeroVideo() {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url(https://picsum.photos/seed/nbp-hero/1920/1080)",
+              "url(https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/hero-main.png)",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
