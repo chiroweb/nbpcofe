@@ -3,33 +3,50 @@
 import { m } from "framer-motion";
 import {
   fadeUpVariants,
-  slideInLeftVariants,
-  slideInRightVariants,
   staggerContainer,
 } from "@/lib/animations";
 import SectionEyebrow from "@/components/ui/SectionEyebrow";
 
 export default function BrandIntro() {
   return (
-    <section id="about" className="py-32 md:py-44">
-      <div className="mx-auto max-w-[1400px] px-6 md:px-10">
-        <m.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-[55fr_45fr] gap-12 md:gap-20 items-center"
-        >
-          <m.div variants={slideInLeftVariants}>
-            <SectionEyebrow>Since 2019</SectionEyebrow>
+    <section id="about" className="relative">
+      {/* Full-bleed background image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/brand-intro.png"
+          alt="NBP Korea 작업 환경"
+          className="h-full w-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
 
-            <h2 className="mt-8 font-serif text-4xl md:text-6xl tracking-tighter leading-[0.95]">
+      {/* Content overlay */}
+      <div className="relative z-10 py-32 md:py-44">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-10">
+          <m.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <m.div variants={fadeUpVariants}>
+              <SectionEyebrow><span className="text-white/50">Since 2013</span></SectionEyebrow>
+            </m.div>
+
+            <m.h2
+              variants={fadeUpVariants}
+              className="mt-8 font-serif text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-[0.9] text-white"
+            >
               Crafted
               <br />
               with Intent
-            </h2>
+            </m.h2>
 
-            <div className="mt-8 space-y-5 text-base text-muted leading-relaxed max-w-[55ch]">
+            <m.div
+              variants={fadeUpVariants}
+              className="mt-10 max-w-[600px] space-y-5 text-base text-white/70 leading-relaxed"
+            >
               <p>
                 NBP_COFFEE는 2013년 서울의 한 카페에서 시작했습니다. 커피를 직접 로스팅
                 장비를 직접 사용하며 느낀 불편함에서 출발해, 현장의 요구를 반영한
@@ -43,53 +60,38 @@ export default function BrandIntro() {
               <p>
                 전국 300곳이 넘는 카페와 로스터리에 장비를 납품했습니다. 설치
                 이후에도 정기 점검과 부품 교체를 통해 장비의 수명 전체를
-                책임집니다. 
+                책임집니다.
               </p>
-            </div>
+            </m.div>
 
             <m.div
               variants={fadeUpVariants}
-              className="mt-12 flex items-center gap-12"
+              className="mt-14 flex items-center gap-12"
             >
               <div>
-                <span className="font-mono text-3xl md:text-4xl font-medium tracking-tight">
-                  120
+                <span className="font-mono text-3xl md:text-4xl font-medium tracking-tight text-white">
+                  300
                   <span className="text-accent">+</span>
                 </span>
-                <p className="mt-1 text-xs text-muted">납품 매장</p>
+                <p className="mt-1 text-xs text-white/40">납품 매장</p>
               </div>
               <div>
-                <span className="font-mono text-3xl md:text-4xl font-medium tracking-tight">
+                <span className="font-mono text-3xl md:text-4xl font-medium tracking-tight text-white">
                   1,200
                   <span className="text-accent">+</span>
                 </span>
-                <p className="mt-1 text-xs text-muted">개별 부품</p>
+                <p className="mt-1 text-xs text-white/40">개별 부품</p>
               </div>
               <div>
-                <span className="font-mono text-3xl md:text-4xl font-medium tracking-tight">
-                  6
+                <span className="font-mono text-3xl md:text-4xl font-medium tracking-tight text-white">
+                  12
                   <span className="text-accent">yr</span>
                 </span>
-                <p className="mt-1 text-xs text-muted">업력</p>
+                <p className="mt-1 text-xs text-white/40">업력</p>
               </div>
             </m.div>
           </m.div>
-
-          <m.div variants={slideInRightVariants} className="relative">
-            <div className="overflow-hidden rounded-[2rem] border border-border/50 bg-surface p-2 md:p-3">
-              <div className="overflow-hidden rounded-[1.5rem]">
-                <div className="relative aspect-[4/5] w-full overflow-hidden">
-                  <img
-                    src="https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/brand-intro.png"
-                    alt="NBP Korea 작업 환경"
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            </div>
-          </m.div>
-        </m.div>
+        </div>
       </div>
     </section>
   );
