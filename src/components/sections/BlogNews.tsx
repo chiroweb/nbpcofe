@@ -22,10 +22,8 @@ export default function BlogNews() {
         <div className="mb-16 md:mb-24">
           <SectionEyebrow>News</SectionEyebrow>
           <ScrollReveal>
-            <h2 className="mt-6 font-serif text-4xl md:text-6xl tracking-tighter leading-[0.95]">
-              From the
-              <br />
-              Workshop
+            <h2 className="mt-6 font-serif text-3xl md:text-5xl tracking-tighter leading-[0.95]">
+              소식과 이야기
             </h2>
           </ScrollReveal>
         </div>

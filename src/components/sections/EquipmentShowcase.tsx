@@ -114,9 +114,9 @@ export default function EquipmentShowcase() {
           <SectionEyebrow>Equipment</SectionEyebrow>
           <ScrollReveal>
             <h2 className="mt-6 font-serif text-4xl md:text-6xl tracking-tighter leading-[0.95]">
-              Built for
+              정밀함을 위해
               <br />
-              Precision
+              만들다
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>

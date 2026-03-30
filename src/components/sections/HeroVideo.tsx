@@ -7,7 +7,7 @@ import {
   useTransform,
   useSpring,
 } from "framer-motion";
-import { ArrowDown } from "@phosphor-icons/react";
+import { ArrowDown, ArrowRight } from "@phosphor-icons/react";
 import { springConfig } from "@/lib/animations";
 
 export default function HeroVideo() {
@@ -43,21 +43,26 @@ export default function HeroVideo() {
         <div className="absolute inset-0 bg-black/30" />
       </m.div>
 
-      {/* Center: Main headline */}
+      {/* Main content */}
       <m.div
         style={{ y: springY }}
         className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-10 w-full"
       >
         <div className="flex flex-col items-start">
-          <m.p
+          {/* Sub-headline — bigger, with divider */}
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, ...springConfig }}
-            className="text-xs font-mono tracking-[0.3em] text-white/50 uppercase"
+            className="flex items-center gap-4"
           >
-            NBP Korea · Coffee Equipment
-          </m.p>
+            <div className="h-px w-8 bg-white/40" />
+            <p className="text-sm md:text-base font-mono tracking-[0.15em] text-white/70 uppercase">
+              NBP Korea
+            </p>
+          </m.div>
 
+          {/* Headline */}
           <m.h1
             initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -71,41 +76,36 @@ export default function HeroVideo() {
             설계합니다
           </m.h1>
 
-          <m.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 1.0, duration: 0.8, ease: "easeOut" }}
-            className="mt-8 h-px w-32 md:w-48 bg-white/30 origin-left"
-          />
-
           <m.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, ...springConfig }}
-            className="mt-6 text-sm md:text-base text-white/60 leading-relaxed max-w-[40ch]"
+            transition={{ delay: 1.0, ...springConfig }}
+            className="mt-8 text-sm md:text-base text-white/50 leading-relaxed max-w-[40ch]"
           >
             로스터기, 제연기, 넛버터 머신까지.
             <br />
             설계부터 설치, 그 이후까지 책임집니다.
           </m.p>
 
+          {/* CTA — 상담 문의 = Primary */}
           <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.4, ...springConfig }}
+            transition={{ delay: 1.2, ...springConfig }}
             className="mt-10 flex items-center gap-4"
           >
             <a
-              href="/products"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium text-black transition-all hover:bg-white/90"
-            >
-              장비 살펴보기
-            </a>
-            <a
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 px-7 py-3.5 text-sm font-medium text-white transition-all hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-medium text-white transition-all hover:bg-accent-dark"
             >
               상담 문의
+              <ArrowRight size={14} weight="bold" />
+            </a>
+            <a
+              href="/products"
+              className="inline-flex items-center gap-2 rounded-full border border-white/25 px-8 py-4 text-sm font-medium text-white/80 transition-all hover:bg-white/10 hover:text-white"
+            >
+              장비 살펴보기
             </a>
           </m.div>
         </div>
@@ -120,11 +120,7 @@ export default function HeroVideo() {
       >
         <m.div
           animate={{ y: [0, 8, 0] }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
           <ArrowDown size={20} className="text-white/40" />
         </m.div>

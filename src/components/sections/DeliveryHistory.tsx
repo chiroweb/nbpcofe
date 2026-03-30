@@ -89,10 +89,8 @@ export default function DeliveryHistory() {
         <div className="mb-16 md:mb-20">
           <SectionEyebrow>Clients</SectionEyebrow>
           <ScrollReveal>
-            <h2 className="mt-6 font-serif text-4xl md:text-6xl tracking-tighter leading-[0.95]">
-              Delivery
-              <br />
-              Record
+            <h2 className="mt-6 font-serif text-3xl md:text-5xl tracking-tighter leading-[0.95]">
+              납품 실적
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
