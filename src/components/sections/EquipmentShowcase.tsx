@@ -135,13 +135,13 @@ export default function EquipmentShowcase() {
           className="grid grid-cols-1 md:grid-cols-[2fr_1fr] md:grid-rows-2 gap-6 md:gap-8"
         >
           <m.div key={PRODUCTS[0].id} variants={fadeUpVariants} className="md:row-span-2">
-            <TiltCard product={PRODUCTS[0]} />
+            <a href={`/products?tab=${PRODUCTS[0].id}`}><TiltCard product={PRODUCTS[0]} /></a>
           </m.div>
           <m.div key={PRODUCTS[1].id} variants={fadeUpVariants}>
-            <TiltCard product={PRODUCTS[1]} />
+            <a href={`/products?tab=${PRODUCTS[1].id}`}><TiltCard product={PRODUCTS[1]} /></a>
           </m.div>
           <m.div key={PRODUCTS[2].id} variants={fadeUpVariants}>
-            <TiltCard product={PRODUCTS[2]} />
+            <a href={`/products?tab=${PRODUCTS[2].id}`}><TiltCard product={PRODUCTS[2]} /></a>
           </m.div>
         </m.div>
       </div>

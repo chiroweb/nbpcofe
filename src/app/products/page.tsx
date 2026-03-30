@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { createPortal } from "react-dom";
 import { m, AnimatePresence } from "framer-motion";
 import { ArrowRight, CheckCircle, CaretDown } from "@phosphor-icons/react";
@@ -593,8 +594,11 @@ function ProductSection({
   );
 }
 
-export default function ProductsPage() {
-  const [activeTab, setActiveTab] = useState(0);
+function ProductsContent() {
+  const searchParams = useSearchParams();
+  const tabParam = searchParams.get("tab");
+  const initialTab = tabParam ? PRODUCT_DETAILS.findIndex((p) => p.id === tabParam) : 0;
+  const [activeTab, setActiveTab] = useState(Math.max(initialTab, 0));
 
   return (
     <>
@@ -642,5 +646,13 @@ export default function ProductsPage() {
       </main>
       <Footer />
     </>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense>
+      <ProductsContent />
+    </Suspense>
   );
 }
