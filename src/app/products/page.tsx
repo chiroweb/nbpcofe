@@ -25,28 +25,29 @@ function ModelAccordion({ model }: { model: ModelType }) {
   const specs = "specs" in model ? (model as any).specs : null;
 
   return (
-    <div className="rounded-2xl border border-border bg-background overflow-hidden">
+    <div className="overflow-hidden">
       <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-surface/50 transition-colors"
+        onClick={() => specs && setOpen(!open)}
+        className="w-full flex items-center justify-between py-4 text-left group"
       >
-        <div>
-          <div className="flex items-baseline gap-3">
-            <span className="font-mono text-base font-medium">
-              {model.name}
-            </span>
-            <span className="font-mono text-sm text-accent">
-              {model.capacity}
-            </span>
-          </div>
-          <p className="mt-1.5 text-xs text-muted">{model.target}</p>
+        <div className="flex items-baseline gap-2 min-w-0">
+          <span className="font-mono text-sm font-medium whitespace-nowrap">
+            {model.name}
+          </span>
+          <span className="font-mono text-xs text-accent whitespace-nowrap">
+            {model.capacity}
+          </span>
+          <span className="text-xs text-muted truncate hidden sm:inline">
+            · {model.target}
+          </span>
         </div>
         {specs && (
           <m.div
             animate={{ rotate: open ? 180 : 0 }}
             transition={{ duration: 0.2 }}
+            className="shrink-0 ml-2"
           >
-            <CaretDown size={16} className="text-muted" />
+            <CaretDown size={14} className="text-muted group-hover:text-foreground transition-colors" />
           </m.div>
         )}
       </button>
@@ -57,39 +58,24 @@ function ModelAccordion({ model }: { model: ModelType }) {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="px-5 md:px-6 pb-5 md:pb-6 border-t border-border/50">
-              <div className="pt-4 divide-y divide-border/50">
-                {Object.entries(specs).map(([key, value]) => {
-                  const labelMap: Record<string, string> = {
-                    code: "제품 코드",
-                    size: "크기 (W×D×H)",
-                    weight: "무게",
-                    power: "소비 전력",
-                    burner: "버너 출력",
-                    gas_lpg: "LPG 소비량",
-                    gas_ng: "도시가스 소비량",
-                    control: "제어 방식",
-                    controller: "컨트롤러",
-                    connector: "연료 연결",
-                  };
-                  return (
-                    <div
-                      key={key}
-                      className="flex items-baseline justify-between py-2.5"
-                    >
-                      <span className="text-xs text-muted">
-                        {labelMap[key] || key}
-                      </span>
-                      <span className="text-xs font-mono text-foreground/80">
-                        {value as string}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
+            <div className="pb-4 pl-2 grid grid-cols-2 gap-x-6 gap-y-1.5">
+              {Object.entries(specs).map(([key, value]) => {
+                const labelMap: Record<string, string> = {
+                  code: "코드", size: "크기", weight: "무게",
+                  power: "전력", burner: "버너", gas_lpg: "LPG",
+                  gas_ng: "도시가스", control: "제어",
+                  controller: "컨트롤러", connector: "연료",
+                };
+                return (
+                  <div key={key} className="flex items-baseline justify-between">
+                    <span className="text-[11px] text-muted">{labelMap[key] || key}</span>
+                    <span className="text-[11px] font-mono text-foreground/70">{value as string}</span>
+                  </div>
+                );
+              })}
             </div>
           </m.div>
         )}
@@ -368,10 +354,10 @@ function ProductSection({
                 <h3 className="text-xs font-medium tracking-widest text-muted uppercase mb-6">
                   모델 라인업
                 </h3>
-                <div className="space-y-3">
-                  {"supremeSpecs" in product && (
-                    <SupremeSpecsCard product={product} />
-                  )}
+                {"supremeSpecs" in product && (
+                  <SupremeSpecsCard product={product} />
+                )}
+                <div className="divide-y divide-border">
                   {product.models.map((model) => (
                     <ModelAccordion key={model.name} model={model} />
                   ))}
