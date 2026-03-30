@@ -307,37 +307,6 @@ export const PRODUCT_DETAILS = [
       "",
     ],
   },
-  {
-    id: "others",
-    nameEn: "Industrial Equipment",
-    nameKr: "기타 산업설비",
-    tagline: "에너지 절감 친환경 솔루션",
-    description:
-      "엔비피코리아는 커피 장비 외에도 환경사업부와 연소사업부를 통해 산업용 환경설비를 공급합니다. SMART 축열식 연소 산화 장치(RTO/RCO), 직화식·간접식 가스히터, 산업용 버너 시스템 등을 설계·제조·설치합니다. Midco International U.S.A, Ecostar Turkey와의 기술 제휴를 통해 세계적 수준의 연소 기술을 보유하고 있습니다.",
-    features: [
-      "SMART 축열식 연소 산화 장치 (RTO/RCO)",
-      "직화식 / 간접식 산업용 가스히터",
-      "산업용 가스 버너 시스템",
-      "자동차 도장 건조 시스템",
-      "클린룸 / 드라이룸 가스히터",
-      "Midco U.S.A / Ecostar Turkey 기술 제휴",
-    ],
-    specs: [
-      { label: "환경사업부", value: "RTO, RCO, CTO, DTO, 대기오염방지시설" },
-      { label: "연소사업부", value: "가스히터, 버너, 도장설비, 건조설비" },
-      { label: "인증", value: "ISO 9001, ISO 14001, INNO-BIZ" },
-      { label: "특허", value: "연소 기술 관련 특허 19개 등록" },
-      { label: "디자인 등록", value: "15개 등록, 상표 2개 등록" },
-      { label: "소재지", value: "경기도 안산시 단원구 엠티브이8로 22" },
-    ],
-    models: [],
-    image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/industrial-heater.png",
-    gallery: [
-      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/industrial-deodorizer.png",
-      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/industrial-diffuser.png",
-      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/industrial-flame.png",
-    ],
-  },
 ];
 
 export const INSTALLATION_CASES = [
