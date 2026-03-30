@@ -22,10 +22,10 @@ import { COMPANY_INFO } from "@/lib/constants";
 
 const TIMELINE = [
   {
-    year: "2019",
+    year: "2013",
     title: "창업",
     description:
-      "서울 성수동에서 커피 장비 전문 기업으로 출발. 10kg급 소형 로스터기 첫 모델 NBP-10R 출시.",
+      "서울의 한 카페에서 영감을 받아 커피 장비 전문 기업으로 출발. 15kg급 애프터버너 첫 모델 NK-15 출시.",
   },
   {
     year: "2020",
@@ -41,12 +41,12 @@ const TIMELINE = [
   },
   {
     year: "2022",
-    title: "50호 납품 달성",
+    title: "100호 납품 달성",
     description:
-      "전국 50개 매장에 장비 납품 달성. 정기 점검 서비스 체계를 도입하여 사후 관리 강화.",
+      "전국 80개 이상의 매장에 장비 납품 달성. 정기 점검 서비스 체계를 도입하여 사후 관리 강화.",
   },
   {
-    year: "2023",
+    year: "2018",
     title: "서울카페쇼 첫 참가",
     description:
       "서울카페쇼에 첫 참가하여 업계에 NBP 브랜드를 알림. 견과류 머신 NBP-NB5 프로토타입 공개.",
@@ -102,7 +102,7 @@ export default function AboutPage() {
           title="We Build"
           titleSecondLine="What We Use"
           description="현장에서 시작된 장비. 직접 사용하며 느낀 불편함을 해결하는 것이 NBP_COFFEE의 시작이었습니다."
-          image="https://picsum.photos/seed/about-hero/1920/1080"
+          image="https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-about-1.jpg"
         />
 
         {/* Brand Story — Editorial Split */}
@@ -147,7 +147,7 @@ export default function AboutPage() {
                   <div className="overflow-hidden rounded-[1.5rem]">
                     <div className="relative aspect-[3/4] w-full overflow-hidden">
                       <img
-                        src="https://picsum.photos/seed/about-story/800/1067"
+                        src="https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-about-2.jpg"
                         alt="NBP_COFFEE 공방"
                         className="h-full w-full object-cover"
                         loading="lazy"

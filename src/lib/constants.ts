@@ -109,7 +109,7 @@ export const BLOG_POSTS = [
       "첫 번째 크랙 이후 로스팅 시간과 온도 변화가 커피 향미에 미치는 영향을 데이터로 분석합니다. NBP-30R의 실시간 모니터링 시스템을 활용한 실험 결과를 공유합니다.",
     date: "2025.12.18",
     category: "기술 노트",
-    image: "https://picsum.photos/seed/blog-roast/800/500",
+    image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-roasting-1.jpg",
     featured: true,
   },
   {
@@ -119,7 +119,7 @@ export const BLOG_POSTS = [
       "서울 도심 상권에서 로스터리 카페를 운영할 때 가장 큰 장벽인 연기 문제. NBP 제연기의 이중 촉매 필터 기술을 소개합니다.",
     date: "2025.11.04",
     category: "제품 리뷰",
-    image: "https://picsum.photos/seed/blog-smoke/800/500",
+    image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-roasting-2.jpg",
     featured: false,
   },
   {
@@ -129,7 +129,7 @@ export const BLOG_POSTS = [
       "카페에 견과류 버터 메뉴를 도입한 10개 매장의 6개월 매출 데이터를 분석했습니다.",
     date: "2025.10.22",
     category: "인사이트",
-    image: "https://picsum.photos/seed/blog-nut/800/500",
+    image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-roasting-3.jpg",
     featured: false,
   },
 ] as const;
@@ -139,7 +139,7 @@ export const COMPANY_INFO = {
   nameKr: "엔비피 커피",
   tagline: "완벽한 로스팅의 시작",
   phone: "+82 (2) 6374-8291",
-  email: "hello@nbpcoffee.kr",
+  email: "nbpkorea@nbpkorea.kr",
   address: "서울특별시 성동구 성수이로 88, 3층",
   established: "2019",
 } as const;
@@ -328,9 +328,9 @@ export const INSTALLATION_CASES = [
     result:
       "일일 로스팅 처리량이 45kg에서 150kg으로 증가. 로스팅 프로파일 12종을 커스텀 세팅하여 시즌별 블렌드 전환이 즉시 가능해졌습니다.",
     images: [
-      "https://picsum.photos/seed/case-sf1/800/600",
-      "https://picsum.photos/seed/case-sf2/800/600",
-      "https://picsum.photos/seed/case-sf3/800/600",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-install-1.jpg",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-install-2.jpg",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-install-3.jpg",
     ],
     testimonial: {
       quote: "설치 과정에서 매장 운영에 영향이 전혀 없었습니다. NBP 팀의 사전 현장 조사가 정확했기 때문이라고 생각합니다.",
@@ -353,9 +353,9 @@ export const INSTALLATION_CASES = [
     result:
       "오픈 6개월간 민원 제로. 건물 관리사무소 환기 검사를 1회 만에 통과했습니다.",
     images: [
-      "https://picsum.photos/seed/case-co1/800/600",
-      "https://picsum.photos/seed/case-co2/800/600",
-      "https://picsum.photos/seed/case-co3/800/600",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-install-4.jpg",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-install-5.jpg",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-install-6.jpg",
     ],
     testimonial: {
       quote: "주거 지역이라 걱정이 많았는데, 6개월째 민원이 단 한 건도 없습니다.",
@@ -378,9 +378,9 @@ export const INSTALLATION_CASES = [
     result:
       "오픈 첫 달부터 안정적인 로스팅 운영. 대전 지역 스페셜티 카페 중 최단 기간 자체 로스팅 체제 구축.",
     images: [
-      "https://picsum.photos/seed/case-bw1/800/600",
-      "https://picsum.photos/seed/case-bw2/800/600",
-      "https://picsum.photos/seed/case-bw3/800/600",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-install-7.jpg",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-install-8.jpg",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-install-9.jpg",
     ],
     testimonial: {
       quote: "건축 단계부터 함께해서 공간 효율이 극대화됐습니다. 설치 후 교육까지 원스톱이라 든든했습니다.",
@@ -403,9 +403,9 @@ export const INSTALLATION_CASES = [
     result:
       "월 평균 1,200명의 체험 프로그램 참여. 체험 고객의 원두 구매 전환율 68%를 기록.",
     images: [
-      "https://picsum.photos/seed/case-jo1/800/600",
-      "https://picsum.photos/seed/case-jo2/800/600",
-      "https://picsum.photos/seed/case-jo3/800/600",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-expo-1.jpg",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-expo-2.jpg",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-install-1.jpg",
     ],
     testimonial: {
       quote: "관광객들이 로스팅 과정을 직접 보고, 원두를 구매하는 선순환이 만들어졌습니다.",
@@ -493,7 +493,7 @@ export const NEWS_ARTICLES = [
       "커피 로스팅에서 첫 번째 크랙(1차 크랙)은 원두 내부의 수분이 증발하며 발생하는 결정적 순간입니다. 이 시점 이후 로스터가 선택하는 온도 곡선과 시간이 커피의 최종 향미를 결정합니다. NBP-30R의 실시간 모니터링 시스템을 활용하여 동일 생두를 5가지 다른 프로파일로 로스팅한 결과, 1차 크랙 이후 2분 30초 시점에서 산미와 바디감의 균형점이 형성되는 것을 확인했습니다. 온도 상승률을 분당 8도로 유지했을 때 가장 복합적인 향미 프로파일이 나타났으며, 12도 이상에서는 탄화가 진행되어 쓴맛이 지배적이었습니다.",
     date: "2025.12.18",
     category: "기술 노트",
-    image: "https://picsum.photos/seed/news-roast/1200/600",
+    image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-news-1.jpg",
     featured: true,
   },
   {
@@ -505,7 +505,7 @@ export const NEWS_ARTICLES = [
       "서울 주요 상권에서 로스터리 카페를 운영하려면 환경 규제와 주민 민원이라는 이중 장벽을 넘어야 합니다. NBP-SE 시리즈 제연기는 이중 촉매 필터 시스템을 통해 로스팅 연기의 99.2%를 제거합니다. 첫 번째 촉매층에서 대형 입자와 유기물을 분해하고, 두 번째 촉매층에서 미세 입자와 냄새 분자를 산화시킵니다. 이 과정에서 발생하는 열은 재순환하여 에너지 효율을 높였습니다.",
     date: "2025.11.04",
     category: "제품 리뷰",
-    image: "https://picsum.photos/seed/news-smoke/1200/600",
+    image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-news-2.jpg",
     featured: false,
   },
   {
@@ -517,7 +517,7 @@ export const NEWS_ARTICLES = [
       "NBP 땅콩버터 머신을 도입한 전국 10개 카페의 6개월간 매출 데이터를 추적한 결과, 견과류 버터 관련 메뉴가 전체 매출의 평균 12.4%를 차지하는 것으로 나타났습니다. 특히 아몬드 버터 라떼와 땅콩버터 토스트가 가장 높은 판매량을 기록했으며, 원가율은 기존 메뉴 대비 15% 낮아 수익성 개선에도 기여했습니다.",
     date: "2025.10.22",
     category: "인사이트",
-    image: "https://picsum.photos/seed/news-nut/1200/600",
+    image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-news-3.jpg",
     featured: false,
   },
   {
@@ -529,7 +529,7 @@ export const NEWS_ARTICLES = [
       "2025 서울카페쇼에 3년 연속 참가하여 NBP-30R 로스터기와 신형 NBP-SE400 제연기를 전시했습니다. 올해는 특히 실시간 로스팅 시연에 대한 관심이 높았으며, 3일간 약 480건의 상담이 진행되었습니다. 가장 많은 문의는 기존 장비 교체 시 설치 일정과 비용에 관한 것이었으며, 리스 구매 조건에 대한 관심도 크게 늘었습니다.",
     date: "2025.09.15",
     category: "회사 소식",
-    image: "https://picsum.photos/seed/news-show/1200/600",
+    image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-news-4.jpg",
     featured: false,
   },
   {
@@ -541,7 +541,7 @@ export const NEWS_ARTICLES = [
       "커피 로스터기는 고온·고압 환경에서 작동하는 정밀 장비입니다. 정기 점검을 소홀히 하면 온도 센서 오차가 누적되어 로스팅 품질이 저하되고, 최악의 경우 안전 사고로 이어질 수 있습니다. NBP는 연 2회 정기 점검을 권장하며, 드럼 내부 상태 확인, 온도 센서 교정, 가스 안전밸브 점검, 베어링 윤활, 배기 시스템 청소 등 총 18개 항목을 체크합니다.",
     date: "2025.08.30",
     category: "유지보수",
-    image: "https://picsum.photos/seed/news-maint/1200/600",
+    image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-news-5.jpg",
     featured: false,
   },
   {
@@ -553,7 +553,7 @@ export const NEWS_ARTICLES = [
       "제주 올레커피가 NBP-30R 로스터기를 활용한 로스팅 체험 프로그램의 누적 참여자 1만 명을 달성했습니다. 이 프로그램은 관광객이 직접 생두를 선택하고 로스팅 과정을 체험한 뒤 원두를 가져가는 형태로 운영됩니다. NBP가 설계한 오픈형 레이아웃과 강화유리 안전 가드가 체험의 안전성과 몰입감을 동시에 확보하는 데 기여했습니다.",
     date: "2025.07.12",
     category: "고객 소식",
-    image: "https://picsum.photos/seed/news-jeju/1200/600",
+    image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-news-6.jpg",
     featured: false,
   },
 ] as const;

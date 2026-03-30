@@ -269,7 +269,7 @@ export default function CasesPage() {
           title="Stories from"
           titleSecondLine="the Field"
           description="전국 각지의 카페와 로스터리에서 NBP 장비가 어떻게 자리잡았는지, 현장의 이야기를 전합니다."
-          image="https://picsum.photos/seed/cases-hero/1920/1080"
+          image="https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/stock-install-1.jpg"
         />
 
         {/* Stats Bar */}
