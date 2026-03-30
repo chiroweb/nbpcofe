@@ -261,9 +261,9 @@ export const PRODUCT_DETAILS = [
     },
     image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/roaster-1.5kg-main.jpg",
     gallery: [
-      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/roaster-1.5kg-gallery.png",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/roaster-5kg.jpg",
       "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/roaster-10kg-main.jpg",
-      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/roaster-10kg-customer.png",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/roaster-15kg.png",
     ],
   },
   {
@@ -299,9 +299,9 @@ export const PRODUCT_DETAILS = [
     ],
     image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/nutbutter-main.png",
     gallery: [
-      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/nutbutter-photo1.jpg",
-      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/nutbutter-photo2.jpg",
-      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/nutbutter-main.png",
+      "",
+      "",
+      "",
     ],
   },
   {

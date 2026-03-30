@@ -70,15 +70,15 @@ function TiltCard({
             <img
               src={product.imageLarge}
               alt={product.nameKr}
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              className="absolute inset-0 h-full w-full object-contain transition-transform duration-700 ease-out group-hover:scale-105"
               loading="lazy"
             />
           ) : (
-            <div className="relative w-full overflow-hidden aspect-[4/3]">
+            <div className="relative w-full overflow-hidden aspect-[4/3] flex items-center justify-center">
               <img
                 src={product.image}
                 alt={product.nameKr}
-                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                className="h-full w-full object-contain transition-transform duration-700 ease-out group-hover:scale-105"
                 loading="lazy"
               />
             </div>

@@ -284,8 +284,9 @@ function ProductSection({
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="relative aspect-[4/3] w-full overflow-hidden"
+                    className="relative aspect-[4/3] w-full overflow-hidden bg-background flex items-center justify-center"
                   >
+                    {(activeImage === 0 ? product.image : product.gallery[activeImage - 1]) ? (
                     <img
                       src={
                         activeImage === 0
@@ -293,9 +294,12 @@ function ProductSection({
                           : product.gallery[activeImage - 1]
                       }
                       alt={product.nameKr}
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-contain"
                       loading="lazy"
                     />
+                    ) : (
+                      <span className="text-xs text-muted">No Image</span>
+                    )}
                   </m.div>
                 </AnimatePresence>
               </div>
@@ -313,13 +317,17 @@ function ProductSection({
                       : "border-border/50 opacity-60 hover:opacity-100"
                   }`}
                 >
-                  <div className="w-16 h-12 md:w-20 md:h-14 overflow-hidden">
+                  <div className="w-16 h-12 md:w-20 md:h-14 overflow-hidden bg-background flex items-center justify-center">
+                    {img ? (
                     <img
                       src={img}
                       alt=""
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-contain"
                       loading="lazy"
                     />
+                    ) : (
+                      <span className="text-[10px] text-muted/40">—</span>
+                    )}
                   </div>
                 </button>
               ))}
