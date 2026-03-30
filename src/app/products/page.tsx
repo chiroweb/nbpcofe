@@ -20,113 +20,196 @@ import { PRODUCT_DETAILS } from "@/lib/constants";
 type ProductType = (typeof PRODUCT_DETAILS)[number];
 type ModelType = ProductType["models"][number];
 
-function ModelAccordion({ model }: { model: ModelType }) {
-  const [open, setOpen] = useState(false);
+const specLabelMap: Record<string, string> = {
+  code: "코드", size: "크기", weight: "무게",
+  power: "전력", burner: "버너", gas_lpg: "LPG",
+  gas_ng: "도시가스", control: "제어",
+  controller: "컨트롤러", connector: "연료",
+};
+
+function ModelLineup({ models }: { models: ProductType["models"] }) {
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
   const [viewIdx, setViewIdx] = useState(0);
-  const specs = "specs" in model ? (model as any).specs : null;
-  const images: string[] = "images" in model ? (model as any).images ?? [] : [];
-  const hasContent = specs || images.length > 0;
+  const openModel = openIdx !== null ? models[openIdx] : null;
+  const images: string[] = openModel && "images" in openModel ? (openModel as any).images ?? [] : [];
+  const specs = openModel && "specs" in openModel ? (openModel as any).specs : null;
+
+  function handleToggle(idx: number) {
+    if (openIdx === idx) {
+      setOpenIdx(null);
+    } else {
+      setOpenIdx(idx);
+      setViewIdx(0);
+    }
+  }
 
   return (
-    <div className="overflow-hidden">
-      <button
-        onClick={() => hasContent && setOpen(!open)}
-        className="w-full flex items-center justify-between py-4 text-left group"
-      >
-        <div className="flex items-center gap-2 min-w-0">
-          <span className="font-mono text-sm font-medium whitespace-nowrap">
-            {model.name}
-          </span>
-          <span className="font-mono text-xs text-accent whitespace-nowrap">
-            {model.capacity}
-          </span>
-          {images.length > 0 && <span className="text-[10px] text-muted/60">📷 {images.length}</span>}
-          <span className="text-xs text-muted truncate hidden sm:inline">
-            · {model.target}
-          </span>
-        </div>
-        {hasContent && (
+    <div>
+      <AnimatePresence mode="wait">
+        {openModel && images.length > 0 ? (
+          /* ── Expanded: photo left | specs+list right ── */
           <m.div
-            animate={{ rotate: open ? 180 : 0 }}
-            transition={{ duration: 0.2 }}
-            className="shrink-0 ml-2"
+            key="expanded"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
           >
-            <CaretDown size={14} className="text-muted group-hover:text-foreground transition-colors" />
-          </m.div>
-        )}
-      </button>
-
-      <AnimatePresence>
-        {open && (
-          <m.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="overflow-hidden"
-          >
-            <div className="pb-5 space-y-4">
-              {/* Inline photo gallery */}
-              {images.length > 0 && (
-                <div>
-                  <div className="overflow-hidden rounded-xl border border-border/50 bg-background">
-                    <div className="relative aspect-[4/3] w-full flex items-center justify-center">
-                      <AnimatePresence mode="wait">
-                        <m.img
-                          key={viewIdx}
-                          src={images[viewIdx]}
-                          alt={`${model.name} ${viewIdx + 1}`}
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="h-full w-full object-contain"
-                          loading="lazy"
-                        />
-                      </AnimatePresence>
-                    </div>
-                  </div>
-                  {images.length > 1 && (
-                    <div className="mt-2 flex gap-1.5 flex-wrap">
-                      {images.map((img, i) => (
-                        <button
-                          key={i}
-                          onClick={() => setViewIdx(i)}
-                          className={`overflow-hidden rounded-lg border transition-all ${
-                            viewIdx === i
-                              ? "border-accent ring-1 ring-accent/30"
-                              : "border-border/50 opacity-50 hover:opacity-100"
-                          }`}
-                        >
-                          <div className="w-14 h-10 overflow-hidden bg-background flex items-center justify-center">
-                            <img src={img} alt="" className="h-full w-full object-contain" loading="lazy" />
-                          </div>
-                        </button>
-                      ))}
-                    </div>
-                  )}
+            {/* Left: photo gallery */}
+            <div>
+              <div className="overflow-hidden rounded-xl border border-border/50 bg-background">
+                <div className="relative aspect-[4/3] w-full flex items-center justify-center">
+                  <AnimatePresence mode="wait">
+                    <m.img
+                      key={viewIdx}
+                      src={images[viewIdx]}
+                      alt={`${openModel.name} ${viewIdx + 1}`}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="h-full w-full object-contain"
+                      loading="lazy"
+                    />
+                  </AnimatePresence>
                 </div>
-              )}
-              {/* Specs */}
-              {specs && (
-                <div className="pl-2 grid grid-cols-2 gap-x-6 gap-y-1.5">
-                  {Object.entries(specs).map(([key, value]) => {
-                    const labelMap: Record<string, string> = {
-                      code: "코드", size: "크기", weight: "무게",
-                      power: "전력", burner: "버너", gas_lpg: "LPG",
-                      gas_ng: "도시가스", control: "제어",
-                      controller: "컨트롤러", connector: "연료",
-                    };
-                    return (
-                      <div key={key} className="flex items-baseline justify-between">
-                        <span className="text-[11px] text-muted">{labelMap[key] || key}</span>
-                        <span className="text-[11px] font-mono text-foreground/70">{value as string}</span>
+              </div>
+              {images.length > 1 && (
+                <div className="mt-2 flex gap-1.5 flex-wrap">
+                  {images.map((img, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setViewIdx(i)}
+                      className={`overflow-hidden rounded-lg border transition-all ${
+                        viewIdx === i
+                          ? "border-accent ring-1 ring-accent/30"
+                          : "border-border/50 opacity-50 hover:opacity-100"
+                      }`}
+                    >
+                      <div className="w-14 h-10 overflow-hidden bg-background flex items-center justify-center">
+                        <img src={img} alt="" className="h-full w-full object-contain" loading="lazy" />
                       </div>
-                    );
-                  })}
+                    </button>
+                  ))}
                 </div>
               )}
             </div>
+
+            {/* Right: selected model info + full list */}
+            <div>
+              {/* Selected model header */}
+              <div className="mb-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="font-mono text-base font-medium">{openModel.name}</span>
+                    <span className="font-mono text-sm text-accent ml-2">{openModel.capacity}</span>
+                  </div>
+                  <button
+                    onClick={() => setOpenIdx(null)}
+                    className="text-xs text-muted hover:text-foreground transition-colors px-3 py-1.5 rounded-full border border-border/50 hover:border-border"
+                  >
+                    닫기
+                  </button>
+                </div>
+                <p className="text-xs text-muted mt-1">{openModel.target}</p>
+              </div>
+
+              {/* Specs */}
+              {specs && (
+                <div className="grid grid-cols-2 gap-x-6 gap-y-1.5 mb-5">
+                  {Object.entries(specs).map(([key, value]) => (
+                    <div key={key} className="flex items-baseline justify-between">
+                      <span className="text-[11px] text-muted">{specLabelMap[key] || key}</span>
+                      <span className="text-[11px] font-mono text-foreground/70">{value as string}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Compact model list */}
+              <div className="border-t border-border pt-3">
+                <p className="text-[10px] text-muted/60 uppercase tracking-widest mb-2">다른 모델</p>
+                <div className="space-y-0.5">
+                  {models.map((m, i) => {
+                    const mImages: string[] = "images" in m ? (m as any).images ?? [] : [];
+                    return (
+                      <button
+                        key={m.name}
+                        onClick={() => handleToggle(i)}
+                        className={`w-full flex items-center gap-2 py-2 px-2 rounded-lg text-left text-xs transition-colors ${
+                          openIdx === i
+                            ? "bg-accent/10 text-foreground"
+                            : "text-muted hover:text-foreground hover:bg-surface/50"
+                        }`}
+                      >
+                        <span className="font-mono font-medium">{m.name}</span>
+                        <span className="font-mono text-accent/70">{m.capacity}</span>
+                        {mImages.length > 0 && <span className="text-[9px] text-muted/50">📷</span>}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </m.div>
+        ) : (
+          /* ── Collapsed: normal list ── */
+          <m.div
+            key="collapsed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="divide-y divide-border"
+          >
+            {models.map((model, i) => {
+              const mImages: string[] = "images" in model ? (model as any).images ?? [] : [];
+              const mSpecs = "specs" in model ? (model as any).specs : null;
+              const isOpen = openIdx === i;
+              const hasContent = mSpecs || mImages.length > 0;
+              return (
+                <div key={model.name}>
+                  <button
+                    onClick={() => hasContent && handleToggle(i)}
+                    className="w-full flex items-center justify-between py-4 text-left group"
+                  >
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span className="font-mono text-sm font-medium whitespace-nowrap">{model.name}</span>
+                      <span className="font-mono text-xs text-accent whitespace-nowrap">{model.capacity}</span>
+                      {mImages.length > 0 && <span className="text-[10px] text-muted/60">📷 {mImages.length}</span>}
+                      <span className="text-xs text-muted truncate hidden sm:inline">· {model.target}</span>
+                    </div>
+                    {hasContent && (
+                      <m.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }} className="shrink-0 ml-2">
+                        <CaretDown size={14} className="text-muted group-hover:text-foreground transition-colors" />
+                      </m.div>
+                    )}
+                  </button>
+                  {/* Collapsed model with no images: show specs inline */}
+                  <AnimatePresence>
+                    {isOpen && mImages.length === 0 && mSpecs && (
+                      <m.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pb-4 pl-2 grid grid-cols-2 gap-x-6 gap-y-1.5">
+                          {Object.entries(mSpecs).map(([key, value]) => (
+                            <div key={key} className="flex items-baseline justify-between">
+                              <span className="text-[11px] text-muted">{specLabelMap[key] || key}</span>
+                              <span className="text-[11px] font-mono text-foreground/70">{value as string}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </m.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </m.div>
         )}
       </AnimatePresence>
@@ -445,11 +528,7 @@ function ProductSection({
                 {"supremeSpecs" in product && (
                   <SupremeSpecsCard product={product} />
                 )}
-                <div className="divide-y divide-border">
-                  {product.models.map((model) => (
-                    <ModelAccordion key={model.name} model={model} />
-                  ))}
-                </div>
+                <ModelLineup models={product.models} />
               </>
             )}
           </m.div>
