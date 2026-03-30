@@ -172,6 +172,7 @@ export const PRODUCT_DETAILS = [
     id: "afterburner",
     nameEn: "Coffee Roasting Afterburner",
     nameKr: "커피로스팅 애프터버너",
+    heroImage: `${S3}/hero-afterburner.png`,
     tagline: "연기, 냄새, 민원 문제 끝!",
     description:
       "엔비피코리아의 애프터버너는 커피로스팅 과정에서 발생하는 연기, 냄새, 오염물질 등을 고온에서 완전 연소시켜 완벽하게 제거하는 친환경 제품입니다. 2단 연소 및 완전 연소 고효율 덕트 버너와 컴팩트한 크기의 표면 연소 고효율 메탈 버너를 적용하여 가스비를 약 30% 이상 절감합니다.",
@@ -215,6 +216,7 @@ export const PRODUCT_DETAILS = [
     id: "roaster",
     nameEn: "Kuban Coffee Roaster",
     nameKr: "커피 로스터기",
+    heroImage: `${S3}/hero-roaster.png`,
     tagline: "정밀한 온도 제어, 균일한 결과",
     description:
       "터키 Kuban社의 커피 로스터기를 한국 공식 대리점으로서 공급합니다. Supreme 시리즈와 Base 시리즈로 구성되며, 0.5kg 샘플 로스터부터 240kg 산업용까지 폭넓은 라인업을 보유하고 있습니다. PLC & 터치스크린 소프트웨어 제어, Artisan/Cropster 호환, 맞춤형 색상 커스터마이징을 지원합니다.",
@@ -273,6 +275,7 @@ export const PRODUCT_DETAILS = [
     id: "peanut-butter",
     nameEn: "Nut Butter Machine · NUTS-STAR",
     nameKr: "넛버터 머신",
+    heroImage: `${S3}/hero-nutbutter.png`,
     tagline: "갓 만든 신선함을 경험하세요",
     description:
       "땅콩, 아몬드, 호두, 캐슈넛 등 다양한 견과류를 매장에서 바로 갈아 신선한 버터를 만드는 상업용 머신입니다. 국내 제조 특허기술(KC인증)로 국내 자체 생산하며, 가정용 220V 전원으로 사용 가능합니다. 컴팩트한 소형 크기로 설치가 쉽고 다양한 안전 기능을 갖추고 있습니다.",

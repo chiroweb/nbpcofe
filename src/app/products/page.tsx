@@ -599,17 +599,30 @@ function ProductsContent() {
   const tabParam = searchParams.get("tab");
   const initialTab = tabParam ? PRODUCT_DETAILS.findIndex((p) => p.id === tabParam) : 0;
   const [activeTab, setActiveTab] = useState(Math.max(initialTab, 0));
+  const activeProduct = PRODUCT_DETAILS[activeTab];
+  const heroImage = "heroImage" in activeProduct ? (activeProduct as any).heroImage as string : undefined;
 
   return (
     <>
       <Navbar />
       <main>
-        <PageHero
-          eyebrow="Products"
-          title="Our"
-          titleSecondLine="Equipment"
-          description="로스팅의 모든 변수를 제어하는 장비. 설계부터 제작까지 자체 기술력으로 완성합니다."
-        />
+        <AnimatePresence mode="wait">
+          <m.div
+            key={activeTab}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <PageHero
+              eyebrow={activeProduct.nameEn}
+              title={activeProduct.nameKr}
+              titleSecondLine=""
+              description={activeProduct.tagline}
+              image={heroImage}
+            />
+          </m.div>
+        </AnimatePresence>
 
         {/* Product Navigation */}
         <section className="border-b border-border sticky top-0 z-20 bg-background/80 backdrop-blur-xl">
