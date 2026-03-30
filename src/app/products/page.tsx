@@ -386,6 +386,8 @@ function ProductSection({
 }
 
 export default function ProductsPage() {
+  const [activeTab, setActiveTab] = useState(0);
+
   return (
     <>
       <Navbar />
@@ -401,22 +403,34 @@ export default function ProductsPage() {
         <section className="border-b border-border sticky top-0 z-20 bg-background/80 backdrop-blur-xl">
           <div className="mx-auto max-w-[1400px] px-6 md:px-10">
             <div className="flex gap-1 overflow-x-auto py-3 -mx-6 px-6 md:mx-0 md:px-0">
-              {PRODUCT_DETAILS.map((product) => (
-                <a
+              {PRODUCT_DETAILS.map((product, index) => (
+                <button
                   key={product.id}
-                  href={`#${product.id}`}
-                  className="rounded-full px-5 py-2 text-sm text-muted whitespace-nowrap transition-colors hover:text-foreground hover:bg-surface"
+                  onClick={() => setActiveTab(index)}
+                  className={`rounded-full px-5 py-2 text-sm whitespace-nowrap transition-colors ${
+                    activeTab === index
+                      ? "bg-foreground text-background font-medium"
+                      : "text-muted hover:text-foreground hover:bg-surface"
+                  }`}
                 >
                   {product.nameKr}
-                </a>
+                </button>
               ))}
             </div>
           </div>
         </section>
 
-        {PRODUCT_DETAILS.map((product, index) => (
-          <ProductSection key={product.id} product={product} index={index} />
-        ))}
+        <AnimatePresence mode="wait">
+          <m.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.25 }}
+          >
+            <ProductSection product={PRODUCT_DETAILS[activeTab]} index={activeTab} />
+          </m.div>
+        </AnimatePresence>
       </main>
       <Footer />
     </>
