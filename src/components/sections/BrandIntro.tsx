@@ -80,8 +80,8 @@ export default function BrandIntro() {
               <div className="overflow-hidden rounded-[1.5rem]">
                 <div className="relative aspect-[3/4] w-full overflow-hidden">
                   <img
-                    src="https://picsum.photos/seed/nbp-brand/800/1067"
-                    alt="NBP_COFFEE 공장"
+                    src="https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%E1%84%8B%E1%85%A2%E1%84%91%E1%85%B3%E1%84%90%E1%85%A5%E1%84%87%E1%85%A5%E1%84%82%E1%85%A5+3D%E1%84%85%E1%85%A2%E1%86%AB%E1%84%83%E1%85%A5%E1%84%85%E1%85%B5%E1%86%BC+%E1%84%83%E1%85%A2%E1%84%91%E1%85%AD%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5.png"
+                    alt="애프터버너 3D 렌더링"
                     className="h-full w-full object-cover"
                     loading="lazy"
                   />
