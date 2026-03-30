@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { ArrowRight, CheckCircle, CaretDown } from "@phosphor-icons/react";
 import Navbar from "@/components/layout/Navbar";
@@ -20,37 +20,33 @@ import { PRODUCT_DETAILS } from "@/lib/constants";
 type ProductType = (typeof PRODUCT_DETAILS)[number];
 type ModelType = ProductType["models"][number];
 
-function ZoomImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [zooming, setZooming] = useState(false);
-  const [pos, setPos] = useState({ x: 50, y: 50 });
-
-  function handleMouseMove(e: React.MouseEvent) {
-    const el = containerRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setPos({ x, y });
-  }
-
+function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
   return (
-    <div
-      ref={containerRef}
-      className={`relative overflow-hidden cursor-zoom-in ${className ?? ""}`}
-      onMouseEnter={() => setZooming(true)}
-      onMouseLeave={() => setZooming(false)}
-      onMouseMove={handleMouseMove}
+    <m.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm cursor-pointer"
+      onClick={onClose}
     >
-      <img
+      <m.img
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ duration: 0.2 }}
         src={src}
         alt={alt}
-        className={`h-full w-full object-contain transition-transform duration-200 ${zooming ? "scale-[2.5]" : "scale-100"}`}
-        style={zooming ? { transformOrigin: `${pos.x}% ${pos.y}%` } : undefined}
-        loading="lazy"
-        draggable={false}
+        className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg"
+        onClick={(e) => e.stopPropagation()}
       />
-    </div>
+      <button
+        onClick={onClose}
+        className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors text-2xl font-light"
+      >
+        ✕
+      </button>
+    </m.div>
   );
 }
 
@@ -64,6 +60,7 @@ const specLabelMap: Record<string, string> = {
 function ModelLineup({ models }: { models: ProductType["models"] }) {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const [viewIdx, setViewIdx] = useState(0);
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
   const openModel = openIdx !== null ? models[openIdx] : null;
   const images: string[] = openModel && "images" in openModel ? (openModel as any).images ?? [] : [];
   const specs = openModel && "specs" in openModel ? (openModel as any).specs : null;
@@ -103,7 +100,13 @@ function ModelLineup({ models }: { models: ProductType["models"] }) {
                       transition={{ duration: 0.2 }}
                       className="absolute inset-0"
                     >
-                      <ZoomImage src={images[viewIdx]} alt={`${openModel.name} ${viewIdx + 1}`} className="h-full w-full" />
+                      <img
+                        src={images[viewIdx]}
+                        alt={`${openModel.name} ${viewIdx + 1}`}
+                        className="h-full w-full object-contain cursor-pointer hover:opacity-90 transition-opacity"
+                        loading="lazy"
+                        onClick={() => setLightboxSrc(images[viewIdx])}
+                      />
                     </m.div>
                   </AnimatePresence>
                 </div>
@@ -246,6 +249,9 @@ function ModelLineup({ models }: { models: ProductType["models"] }) {
           </m.div>
         )}
       </AnimatePresence>
+      <AnimatePresence>
+        {lightboxSrc && <Lightbox src={lightboxSrc} alt="" onClose={() => setLightboxSrc(null)} />}
+      </AnimatePresence>
     </div>
   );
 }
@@ -374,6 +380,7 @@ function ProductSection({
   index: number;
 }) {
   const [activeImage, setActiveImage] = useState(0);
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
   const isReversed = index % 2 === 1;
   const compatibleBrands = "compatibleBrands" in product ? (product as any).compatibleBrands as string[] : null;
   const displayImages = [product.image, ...product.gallery.filter(Boolean)];
@@ -481,10 +488,12 @@ function ProductSection({
                     className="relative aspect-[4/3] w-full overflow-hidden bg-background"
                   >
                     {displayImages[activeImage] ? (
-                    <ZoomImage
+                    <img
                       src={displayImages[activeImage]}
                       alt={product.nameKr}
-                      className="h-full w-full"
+                      className="h-full w-full object-contain cursor-pointer hover:opacity-90 transition-opacity"
+                      loading="lazy"
+                      onClick={() => setLightboxSrc(displayImages[activeImage])}
                     />
                     ) : (
                       <div className="h-full w-full flex items-center justify-center">
@@ -568,6 +577,9 @@ function ProductSection({
           </m.div>
         </m.div>
       </div>
+      <AnimatePresence>
+        {lightboxSrc && <Lightbox src={lightboxSrc} alt={product.nameKr} onClose={() => setLightboxSrc(null)} />}
+      </AnimatePresence>
     </section>
   );
 }
