@@ -268,6 +268,7 @@ function ModelLineup({ models }: { models: ProductType["models"] }) {
 function SupremeSpecsCard({ product }: { product: ProductType }) {
   const [open, setOpen] = useState(false);
   const [viewIdx, setViewIdx] = useState(0);
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
   const supremeSpecs = "supremeSpecs" in product ? (product as any).supremeSpecs : null;
   const supremeImages: string[] = "supremeImages" in product ? (product as any).supremeImages ?? [] : [];
   if (!supremeSpecs) return null;
@@ -333,8 +334,9 @@ function SupremeSpecsCard({ product }: { product: ProductType }) {
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                           transition={{ duration: 0.2 }}
-                          className="h-full w-full object-contain"
+                          className="h-full w-full object-contain cursor-pointer hover:opacity-90 transition-opacity"
                           loading="lazy"
+                          onClick={() => setLightboxSrc(supremeImages[viewIdx])}
                         />
                       </AnimatePresence>
                     </div>
@@ -376,6 +378,9 @@ function SupremeSpecsCard({ product }: { product: ProductType }) {
             </div>
           </m.div>
         )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {lightboxSrc && <Lightbox src={lightboxSrc} alt="Supreme" onClose={() => setLightboxSrc(null)} />}
       </AnimatePresence>
     </div>
   );
