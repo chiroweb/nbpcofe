@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { m, AnimatePresence } from "framer-motion";
 import { ArrowRight, CheckCircle, CaretDown } from "@phosphor-icons/react";
 import Navbar from "@/components/layout/Navbar";
@@ -21,13 +22,20 @@ type ProductType = (typeof PRODUCT_DETAILS)[number];
 type ModelType = ProductType["models"][number];
 
 function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
-  return (
+  useEffect(() => {
+    function handleKey(e: KeyboardEvent) { if (e.key === "Escape") onClose(); }
+    document.addEventListener("keydown", handleKey);
+    document.body.style.overflow = "hidden";
+    return () => { document.removeEventListener("keydown", handleKey); document.body.style.overflow = ""; };
+  }, [onClose]);
+
+  return createPortal(
     <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm cursor-pointer"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/85 backdrop-blur-sm cursor-pointer"
       onClick={onClose}
     >
       <m.img
@@ -37,16 +45,17 @@ function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: ()
         transition={{ duration: 0.2 }}
         src={src}
         alt={alt}
-        className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg"
+        className="max-h-[85vh] max-w-[90vw] object-contain"
         onClick={(e) => e.stopPropagation()}
       />
       <button
         onClick={onClose}
-        className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors text-2xl font-light"
+        className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full bg-black/50 text-white/80 hover:text-white hover:bg-black/70 transition-colors text-lg"
       >
         ✕
       </button>
-    </m.div>
+    </m.div>,
+    document.body
   );
 }
 
@@ -380,7 +389,6 @@ function ProductSection({
   index: number;
 }) {
   const [activeImage, setActiveImage] = useState(0);
-  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
   const isReversed = index % 2 === 1;
   const compatibleBrands = "compatibleBrands" in product ? (product as any).compatibleBrands as string[] : null;
   const displayImages = [product.image, ...product.gallery.filter(Boolean)];
@@ -491,9 +499,8 @@ function ProductSection({
                     <img
                       src={displayImages[activeImage]}
                       alt={product.nameKr}
-                      className="h-full w-full object-contain cursor-pointer hover:opacity-90 transition-opacity"
+                      className="h-full w-full object-contain"
                       loading="lazy"
-                      onClick={() => setLightboxSrc(displayImages[activeImage])}
                     />
                     ) : (
                       <div className="h-full w-full flex items-center justify-center">
@@ -577,9 +584,6 @@ function ProductSection({
           </m.div>
         </m.div>
       </div>
-      <AnimatePresence>
-        {lightboxSrc && <Lightbox src={lightboxSrc} alt={product.nameKr} onClose={() => setLightboxSrc(null)} />}
-      </AnimatePresence>
     </section>
   );
 }
