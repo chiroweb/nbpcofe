@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { ArrowRight, CheckCircle, CaretDown } from "@phosphor-icons/react";
 import Navbar from "@/components/layout/Navbar";
@@ -19,6 +19,40 @@ import { PRODUCT_DETAILS } from "@/lib/constants";
 
 type ProductType = (typeof PRODUCT_DETAILS)[number];
 type ModelType = ProductType["models"][number];
+
+function ZoomImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [zooming, setZooming] = useState(false);
+  const [pos, setPos] = useState({ x: 50, y: 50 });
+
+  function handleMouseMove(e: React.MouseEvent) {
+    const el = containerRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setPos({ x, y });
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      className={`relative overflow-hidden cursor-zoom-in ${className ?? ""}`}
+      onMouseEnter={() => setZooming(true)}
+      onMouseLeave={() => setZooming(false)}
+      onMouseMove={handleMouseMove}
+    >
+      <img
+        src={src}
+        alt={alt}
+        className={`h-full w-full object-contain transition-transform duration-200 ${zooming ? "scale-[2.5]" : "scale-100"}`}
+        style={zooming ? { transformOrigin: `${pos.x}% ${pos.y}%` } : undefined}
+        loading="lazy"
+        draggable={false}
+      />
+    </div>
+  );
+}
 
 const specLabelMap: Record<string, string> = {
   code: "코드", size: "크기", weight: "무게",
@@ -59,19 +93,18 @@ function ModelLineup({ models }: { models: ProductType["models"] }) {
             {/* Left: photo gallery */}
             <div>
               <div className="overflow-hidden rounded-xl border border-border/50 bg-background">
-                <div className="relative aspect-[4/3] w-full flex items-center justify-center">
+                <div className="relative aspect-[4/3] w-full">
                   <AnimatePresence mode="wait">
-                    <m.img
+                    <m.div
                       key={viewIdx}
-                      src={images[viewIdx]}
-                      alt={`${openModel.name} ${viewIdx + 1}`}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.2 }}
-                      className="h-full w-full object-contain"
-                      loading="lazy"
-                    />
+                      className="absolute inset-0"
+                    >
+                      <ZoomImage src={images[viewIdx]} alt={`${openModel.name} ${viewIdx + 1}`} className="h-full w-full" />
+                    </m.div>
                   </AnimatePresence>
                 </div>
               </div>
@@ -445,17 +478,18 @@ function ProductSection({
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="relative aspect-[4/3] w-full overflow-hidden bg-background flex items-center justify-center"
+                    className="relative aspect-[4/3] w-full overflow-hidden bg-background"
                   >
                     {displayImages[activeImage] ? (
-                    <img
+                    <ZoomImage
                       src={displayImages[activeImage]}
                       alt={product.nameKr}
-                      className="h-full w-full object-contain"
-                      loading="lazy"
+                      className="h-full w-full"
                     />
                     ) : (
-                      <span className="text-xs text-muted">No Image</span>
+                      <div className="h-full w-full flex items-center justify-center">
+                        <span className="text-xs text-muted">No Image</span>
+                      </div>
                     )}
                   </m.div>
                 </AnimatePresence>
