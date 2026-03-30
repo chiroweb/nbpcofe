@@ -14,8 +14,8 @@ export const PRODUCTS = [
     description:
       "촉매 산화 방식으로 로스팅 중 발생하는 연기와 냄새를 99.2% 제거합니다. 도심 매장에서도 안심하고 운영할 수 있습니다.",
     spec: "99.2% removal",
-    image: "https://picsum.photos/seed/nbp-afterburner/800/600",
-    imageLarge: "https://picsum.photos/seed/nbp-afterburner/1200/900",
+    image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%95%A0%ED%94%84%ED%84%B0%EB%B2%84%EB%84%88/%EC%95%A0%ED%94%84%ED%84%B0%EB%B2%84%EB%84%88%203D%EB%9E%9C%EB%8D%94%EB%A7%81%20%EB%8C%80%ED%91%9C%EC%9D%B4%EB%AF%B8%EC%A7%80.png",
+    imageLarge: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%95%A0%ED%94%84%ED%84%B0%EB%B2%84%EB%84%88/%EC%95%A0%ED%94%84%ED%84%B0%EB%B2%84%EB%84%88%203D%EB%9E%9C%EB%8D%94%EB%A7%81%20%EB%8C%80%ED%91%9C%EC%9D%B4%EB%AF%B8%EC%A7%80.png",
     span: "large" as const,
   },
   {
@@ -25,8 +25,8 @@ export const PRODUCTS = [
     description:
       "정밀한 온도 제어와 균일한 열풍 순환 시스템을 갖춘 상업용 로스터. 배치당 최대 30kg까지 처리하며, 실시간 로스팅 프로파일을 제공합니다.",
     spec: "30kg / batch",
-    image: "https://picsum.photos/seed/nbp-roaster/800/600",
-    imageLarge: "https://picsum.photos/seed/nbp-roaster/1200/900",
+    image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%83%88%20%ED%8F%B4%EB%8D%94%20%282%29/10%20kg%20roastrer/10-kg-roaster.jpg",
+    imageLarge: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%83%88%20%ED%8F%B4%EB%8D%94%20%282%29/10%20kg%20roastrer/10-kg-roaster.jpg",
     span: "small" as const,
   },
   {
@@ -36,8 +36,8 @@ export const PRODUCTS = [
     description:
       "견과류를 갈아 신선한 버터를 즉석에서 만드는 상업용 그라인더. 카페 메뉴 확장에 최적화된 소형 장비입니다.",
     spec: "5kg / hour",
-    image: "https://picsum.photos/seed/nbp-peanut/800/600",
-    imageLarge: "https://picsum.photos/seed/nbp-peanut/1200/900",
+    image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%A0%9C%ED%92%88%EC%82%AC%EC%A7%84%20%ED%94%BC%EB%84%9B%EB%A8%B8%EC%8B%A0.png",
+    imageLarge: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%A0%9C%ED%92%88%EC%82%AC%EC%A7%84%20%ED%94%BC%EB%84%9B%EB%A8%B8%EC%8B%A0.png",
     span: "small" as const,
   },
 ] as const;
@@ -202,11 +202,11 @@ export const PRODUCT_DETAILS = [
       { name: "NKIC-60K", capacity: "60kg", target: "대규모 산업 시설", specs: { size: "645 × 750 × 2,190mm", burner: "이단연소 고효율 덕트버너", controller: "비례제어", connector: "LPG / 도시가스 (13A)" } },
     ],
     compatibleBrands: ["PROBAT", "GIESEN", "LORING", "FUJI ROYAL", "PROASTER", "OZTURK", "DIEDRICH", "TOPER", "BUHLER", "JOPER"],
-    image: "https://picsum.photos/seed/nbp-afterburner-detail/1200/800",
+    image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%95%A0%ED%94%84%ED%84%B0%EB%B2%84%EB%84%88/%EC%95%A0%ED%94%84%ED%84%B0%EB%B2%84%EB%84%88%203D%EB%9E%9C%EB%8D%94%EB%A7%81%20%EB%8C%80%ED%91%9C%EC%9D%B4%EB%AF%B8%EC%A7%80.png",
     gallery: [
-      "https://picsum.photos/seed/afterburner-g1/800/600",
-      "https://picsum.photos/seed/afterburner-g2/800/600",
-      "https://picsum.photos/seed/afterburner-g3/800/600",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%95%A0%ED%94%84%ED%84%B0%EB%B2%84%EB%84%88/%EC%95%A0%ED%94%84%ED%84%B0%EB%B2%84%EB%84%88%28BLACK%29.png",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%95%A0%ED%94%84%ED%84%B0%EB%B2%84%EB%84%88/%EC%95%A0%ED%94%84%ED%84%B0%EB%B2%84%EB%84%88%28WHITE%29.png",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%95%A0%ED%94%84%ED%84%B0%EB%B2%84%EB%84%88/%EC%95%A0%ED%94%84%ED%84%B0%EB%B2%84%EB%84%88%28METAL%29.png",
     ],
   },
   {
@@ -259,11 +259,11 @@ export const PRODUCT_DETAILS = [
       display: "PLC & 7인치 Siemens 터치스크린",
       customization: "가능",
     },
-    image: "https://picsum.photos/seed/nbp-roaster-detail/1200/800",
+    image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%83%88%20%ED%8F%B4%EB%8D%94%20%282%29/1%2C5%20kg%20Roaster/1%2C5-kg-gray-coffee-roaster.jpg",
     gallery: [
-      "https://picsum.photos/seed/roaster-g1/800/600",
-      "https://picsum.photos/seed/roaster-g2/800/600",
-      "https://picsum.photos/seed/roaster-g3/800/600",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%83%88%20%ED%8F%B4%EB%8D%94%20%282%29/1%2C5%20kg%20Roaster/Gallery.png",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%83%88%20%ED%8F%B4%EB%8D%94%20%282%29/10%20kg%20roastrer/10-kg-roaster.jpg",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%83%88%20%ED%8F%B4%EB%8D%94%20%282%29/10%20kg%20roastrer/Customer.png",
     ],
   },
   {
@@ -297,11 +297,11 @@ export const PRODUCT_DETAILS = [
     models: [
       { name: "NUTS-STAR", capacity: "50kg/h", target: "카페 / 베이커리 / 호텔 / 레스토랑 / 견과류 매장 / 방앗간" },
     ],
-    image: "https://picsum.photos/seed/nbp-peanut-detail/1200/800",
+    image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%A0%9C%ED%92%88%EC%82%AC%EC%A7%84%20%ED%94%BC%EB%84%9B%EB%A8%B8%EC%8B%A0.png",
     gallery: [
-      "https://picsum.photos/seed/peanut-g1/800/600",
-      "https://picsum.photos/seed/peanut-g2/800/600",
-      "https://picsum.photos/seed/peanut-g3/800/600",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/KakaoTalk_20250325_142724899.jpg",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/KakaoTalk_20250325_142724899_01.jpg",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%A0%9C%ED%92%88%EC%82%AC%EC%A7%84%20%ED%94%BC%EB%84%9B%EB%A8%B8%EC%8B%A0.png",
     ],
   },
   {
@@ -328,11 +328,11 @@ export const PRODUCT_DETAILS = [
       { label: "소재지", value: "경기도 안산시 단원구 엠티브이8로 22" },
     ],
     models: [],
-    image: "https://picsum.photos/seed/nbp-industrial/1200/800",
+    image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%95%A0%ED%94%84%ED%84%B0%EB%B2%84%EB%84%88/%EC%86%8C%ED%98%95%ED%9E%88%ED%84%B0%281%29.png",
     gallery: [
-      "https://picsum.photos/seed/industrial-g1/800/600",
-      "https://picsum.photos/seed/industrial-g2/800/600",
-      "https://picsum.photos/seed/industrial-g3/800/600",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%95%A0%ED%94%84%ED%84%B0%EB%B2%84%EB%84%88/%EC%95%8C%ED%94%BC%EC%BA%90%EC%8A%A4%ED%8A%B8%20%ED%83%88%EC%97%B0%ED%83%88%EC%B7%A8%EC%9E%A5%EC%B9%98.png",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%95%A0%ED%94%84%ED%84%B0%EB%B2%84%EB%84%88/%EC%B6%95%EC%97%B4%EB%94%94%ED%93%A8%EC%A0%80.png",
+      "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/%EC%95%A0%ED%94%84%ED%84%B0%EB%B2%84%EB%84%88/%ED%99%94%EC%97%BC%EC%9D%B4%EB%AF%B8%EC%A7%80.png",
     ],
   },
 ] as const;
