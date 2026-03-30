@@ -31,15 +31,14 @@ export default function HeroVideo() {
         style={{ scale: imageScale, opacity: imageOpacity }}
         className="absolute inset-0 z-0"
       >
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url(https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/hero-main.png)",
-          }}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          src="https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/KakaoTalk_20251110_233402530.mp4"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-transparent" />
       </m.div>
 
       {/* 왼쪽 위 */}
