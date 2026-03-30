@@ -165,6 +165,8 @@ export const FOOTER_LINKS = {
   ],
 } as const;
 
+const S3 = "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products";
+
 export const PRODUCT_DETAILS = [
   {
     id: "afterburner",
@@ -192,14 +194,14 @@ export const PRODUCT_DETAILS = [
       { label: "가스 압력", value: "저압 (1.0kPa~3.3kPa) / 고압 (100kPa)" },
     ],
     models: [
-      { name: "NKIC-1K", capacity: "1kg", target: "소형 샘플 로스터", specs: { size: "355 × 355 × 1,183mm", burner: "표면연소 고효율 메탈버너", controller: "다단제어", connector: "도시가스 (13A)" } },
-      { name: "NKIC-3K", capacity: "3kg", target: "소형 카페 로스터", specs: { size: "435 × 545 × 1,255mm", burner: "표면연소 고효율 메탈버너", controller: "다단제어", connector: "도시가스 (13A)" } },
-      { name: "NKIC-5K", capacity: "5kg", target: "중소형 로스터리", specs: { size: "435 × 545 × 1,310mm", burner: "표면연소 고효율 메탈버너", controller: "디지털 컨트롤러", connector: "도시가스 (13A)" } },
-      { name: "NKIC-10K", capacity: "10kg", target: "중형 로스터리 카페", specs: { size: "545 × 645 × 1,700mm", burner: "이단연소 고효율 덕트버너", controller: "디지털 컨트롤러", connector: "LPG / 도시가스 (13A)" } },
-      { name: "NKIC-15K", capacity: "15kg", target: "대형 로스터리", specs: { size: "545 × 655 × 1,795mm", burner: "이단연소 고효율 덕트버너", controller: "터치스크린 컨트롤러", connector: "LPG / 도시가스 (13A)" } },
-      { name: "NKIC-20K", capacity: "20kg", target: "대형 로스팅 공장", specs: { size: "545 × 655 × 1,895mm", burner: "이단연소 고효율 덕트버너", controller: "비례제어", connector: "LPG / 도시가스 (13A)" } },
-      { name: "NKIC-30K", capacity: "30kg", target: "산업용 대량 로스팅", specs: { size: "645 × 655 × 1,895mm", burner: "이단연소 고효율 덕트버너", controller: "비례제어", connector: "LPG / 도시가스 (13A)" } },
-      { name: "NKIC-60K", capacity: "60kg", target: "대규모 산업 시설", specs: { size: "645 × 750 × 2,190mm", burner: "이단연소 고효율 덕트버너", controller: "비례제어", connector: "LPG / 도시가스 (13A)" } },
+      { name: "NKIC-1K", capacity: "1kg", target: "소형 샘플 로스터", specs: { size: "355 × 355 × 1,183mm", burner: "표면연소 고효율 메탈버너", controller: "다단제어", connector: "도시가스 (13A)" }, images: [`${S3}/ab-1k-1.png`] },
+      { name: "NKIC-3K", capacity: "3kg", target: "소형 카페 로스터", specs: { size: "435 × 545 × 1,255mm", burner: "표면연소 고효율 메탈버너", controller: "다단제어", connector: "도시가스 (13A)" }, images: [`${S3}/ab-3k-1.png`, `${S3}/ab-3k-2.png`] },
+      { name: "NKIC-5K", capacity: "5kg", target: "중소형 로스터리", specs: { size: "435 × 545 × 1,310mm", burner: "표면연소 고효율 메탈버너", controller: "디지털 컨트롤러", connector: "도시가스 (13A)" }, images: [`${S3}/ab-5k-1.png`, `${S3}/ab-5k-2.png`] },
+      { name: "NKIC-10K", capacity: "10kg", target: "중형 로스터리 카페", specs: { size: "545 × 645 × 1,700mm", burner: "이단연소 고효율 덕트버너", controller: "디지털 컨트롤러", connector: "LPG / 도시가스 (13A)" }, images: [`${S3}/ab-10k-1.jpg`, `${S3}/ab-10k-2.jpg`] },
+      { name: "NKIC-15K", capacity: "15kg", target: "대형 로스터리", specs: { size: "545 × 655 × 1,795mm", burner: "이단연소 고효율 덕트버너", controller: "터치스크린 컨트롤러", connector: "LPG / 도시가스 (13A)" }, images: [`${S3}/ab-15k-1.png`, `${S3}/ab-15k-2.png`] },
+      { name: "NKIC-20K", capacity: "20kg", target: "대형 로스팅 공장", specs: { size: "545 × 655 × 1,895mm", burner: "이단연소 고효율 덕트버너", controller: "비례제어", connector: "LPG / 도시가스 (13A)" }, images: [] },
+      { name: "NKIC-30K", capacity: "30kg", target: "산업용 대량 로스팅", specs: { size: "645 × 655 × 1,895mm", burner: "이단연소 고효율 덕트버너", controller: "비례제어", connector: "LPG / 도시가스 (13A)" }, images: [`${S3}/ab-30k-1.png`] },
+      { name: "NKIC-60K", capacity: "60kg", target: "대규모 산업 시설", specs: { size: "645 × 750 × 2,190mm", burner: "이단연소 고효율 덕트버너", controller: "비례제어", connector: "LPG / 도시가스 (13A)" }, images: [] },
     ],
     compatibleBrands: ["PROBAT", "GIESEN", "LORING", "FUJI ROYAL", "PROASTER", "OZTURK", "DIEDRICH", "TOPER", "BUHLER", "JOPER"],
     image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/afterburner-main.png",
@@ -235,13 +237,13 @@ export const PRODUCT_DETAILS = [
       { label: "모터 수", value: "4개" },
     ],
     models: [
-      { name: "BASE 0.5", capacity: "0.5kg", target: "샘플 로스팅 / 교육용", specs: { code: "KBN1000-M-05", size: "56 × 89 × 92cm", weight: "65kg", power: "0.72kW", burner: "5kW", gas_lpg: "0.36m³", gas_ng: "0.52m³", control: "수동 / 디지털 속도 제어" } },
-      { name: "BASE 1.5", capacity: "1.5kg", target: "소형 카페 / 교육기관", specs: { code: "KBN1000-M-1.5", size: "87 × 115 × 127cm", weight: "155kg", power: "1.84kW", burner: "10kW", gas_lpg: "0.72m³", gas_ng: "1.04m³", control: "PLC 시스템 (옵션)" } },
-      { name: "BASE 3", capacity: "3kg", target: "로스터리 카페", specs: { code: "KBN1000-M-3", size: "87 × 135 × 150cm", weight: "270kg", power: "1.24kW", burner: "27.5kW", gas_lpg: "1.98m³", gas_ng: "2.86m³", control: "PLC 시스템 (옵션)" } },
-      { name: "BASE 5", capacity: "5kg", target: "중형 로스터리", specs: { code: "KBN1000-M-5", size: "90 × 155 × 165cm", weight: "330kg", power: "1.84kW", burner: "35kW", gas_lpg: "2.52m³", gas_ng: "3.64m³", control: "수동 / 소프트웨어 & 터치스크린" } },
-      { name: "BASE 10", capacity: "10kg", target: "대형 로스터리 카페", specs: { code: "KBN1000-M-10", size: "107 × 195 × 190cm", weight: "480kg", power: "2.24kW", burner: "55kW", gas_lpg: "3.96m³", gas_ng: "5.72m³", control: "수동 / 소프트웨어 & 터치스크린 / 풀오토" } },
-      { name: "BASE 15", capacity: "15kg", target: "대형 로스팅 공장", specs: { code: "KBN1000-M-15", size: "107 × 200 × 195cm", weight: "530kg", power: "2.24kW", burner: "55kW", gas_lpg: "3.96m³", gas_ng: "5.72m³", control: "수동 / 소프트웨어 & 터치스크린" } },
-      { name: "BASE 20", capacity: "20kg", target: "산업용 로스팅", specs: { code: "KBN1000-M-20", size: "115 × 210 × 205cm", weight: "670kg", power: "2.24kW", burner: "35kW", gas_lpg: "2.52m³", gas_ng: "3.64m³", control: "수동 / 소프트웨어 & 터치스크린" } },
+      { name: "BASE 0.5", capacity: "0.5kg", target: "샘플 로스팅 / 교육용", specs: { code: "KBN1000-M-05", size: "56 × 89 × 92cm", weight: "65kg", power: "0.72kW", burner: "5kW", gas_lpg: "0.36m³", gas_ng: "0.52m³", control: "수동 / 디지털 속도 제어" }, images: [`${S3}/roaster-05kg-1.jpg`, `${S3}/roaster-05kg-2.jpg`, `${S3}/roaster-05kg-3.jpg`, `${S3}/roaster-05kg-4.jpg`] },
+      { name: "BASE 1.5", capacity: "1.5kg", target: "소형 카페 / 교육기관", specs: { code: "KBN1000-M-1.5", size: "87 × 115 × 127cm", weight: "155kg", power: "1.84kW", burner: "10kW", gas_lpg: "0.72m³", gas_ng: "1.04m³", control: "PLC 시스템 (옵션)" }, images: [`${S3}/roaster-1_5kg-1.jpg`, `${S3}/roaster-1_5kg-2.jpg`, `${S3}/roaster-1_5kg-3.png`, `${S3}/roaster-1_5kg-4.png`, `${S3}/roaster-1_5kg-5.png`] },
+      { name: "BASE 3", capacity: "3kg", target: "로스터리 카페", specs: { code: "KBN1000-M-3", size: "87 × 135 × 150cm", weight: "270kg", power: "1.24kW", burner: "27.5kW", gas_lpg: "1.98m³", gas_ng: "2.86m³", control: "PLC 시스템 (옵션)" }, images: [`${S3}/roaster-3kg-1.jpg`, `${S3}/roaster-3kg-2.jpg`, `${S3}/roaster-3kg-3.png`, `${S3}/roaster-3kg-4.png`, `${S3}/roaster-3kg-5.png`] },
+      { name: "BASE 5", capacity: "5kg", target: "중형 로스터리", specs: { code: "KBN1000-M-5", size: "90 × 155 × 165cm", weight: "330kg", power: "1.84kW", burner: "35kW", gas_lpg: "2.52m³", gas_ng: "3.64m³", control: "수동 / 소프트웨어 & 터치스크린" }, images: [`${S3}/roaster-5kg-1.jpg`, `${S3}/roaster-5kg-2.jpg`, `${S3}/roaster-5kg-3.png`, `${S3}/roaster-5kg-4.png`, `${S3}/roaster-5kg-5.png`] },
+      { name: "BASE 10", capacity: "10kg", target: "대형 로스터리 카페", specs: { code: "KBN1000-M-10", size: "107 × 195 × 190cm", weight: "480kg", power: "2.24kW", burner: "55kW", gas_lpg: "3.96m³", gas_ng: "5.72m³", control: "수동 / 소프트웨어 & 터치스크린 / 풀오토" }, images: [`${S3}/roaster-10kg-1.jpg`, `${S3}/roaster-10kg-2.jpg`, `${S3}/roaster-10kg-3.png`, `${S3}/roaster-10kg-4.png`] },
+      { name: "BASE 15", capacity: "15kg", target: "대형 로스팅 공장", specs: { code: "KBN1000-M-15", size: "107 × 200 × 195cm", weight: "530kg", power: "2.24kW", burner: "55kW", gas_lpg: "3.96m³", gas_ng: "5.72m³", control: "수동 / 소프트웨어 & 터치스크린" }, images: [`${S3}/roaster-15kg-1.png`, `${S3}/roaster-15kg-2.png`, `${S3}/roaster-15kg-3.png`, `${S3}/roaster-15kg-4.jpg`] },
+      { name: "BASE 20", capacity: "20kg", target: "산업용 로스팅", specs: { code: "KBN1000-M-20", size: "115 × 210 × 205cm", weight: "670kg", power: "2.24kW", burner: "35kW", gas_lpg: "2.52m³", gas_ng: "3.64m³", control: "수동 / 소프트웨어 & 터치스크린" }, images: [`${S3}/roaster-20kg-1.jpg`, `${S3}/roaster-20kg-2.jpg`, `${S3}/roaster-20kg-3.jpg`, `${S3}/roaster-20kg-4.jpg`] },
     ],
     supremeSpecs: {
       capacities: "1.8 / 3 / 6 / 12 / 18 / 24kg",
@@ -259,6 +261,7 @@ export const PRODUCT_DETAILS = [
       display: "PLC & 7인치 Siemens 터치스크린",
       customization: "가능",
     },
+    supremeImages: [`${S3}/roaster-supreme-1.png`, `${S3}/roaster-supreme-2.jpg`, `${S3}/roaster-supreme-3.jpg`, `${S3}/roaster-supreme-4.jpg`, `${S3}/roaster-supreme-5.png`],
     image: "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/roaster-1.5kg-main.jpg",
     gallery: [
       "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/roaster-5kg.jpg",
@@ -335,7 +338,7 @@ export const PRODUCT_DETAILS = [
       "https://chiro-web.s3.ap-northeast-2.amazonaws.com/fa/AFTERBUNNER/products/industrial-flame.png",
     ],
   },
-] as const;
+];
 
 export const INSTALLATION_CASES = [
   {

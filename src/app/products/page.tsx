@@ -20,23 +20,28 @@ import { PRODUCT_DETAILS } from "@/lib/constants";
 type ProductType = (typeof PRODUCT_DETAILS)[number];
 type ModelType = ProductType["models"][number];
 
-function ModelAccordion({ model }: { model: ModelType }) {
+function ModelAccordion({ model, isSelected, onSelect }: { model: ModelType; isSelected?: boolean; onSelect?: () => void }) {
   const [open, setOpen] = useState(false);
   const specs = "specs" in model ? (model as any).specs : null;
+  const hasImages = "images" in model && ((model as any).images as string[]).length > 0;
 
   return (
     <div className="overflow-hidden">
       <button
-        onClick={() => specs && setOpen(!open)}
-        className="w-full flex items-center justify-between py-4 text-left group"
+        onClick={() => {
+          if (onSelect && hasImages) onSelect();
+          if (specs) setOpen(!open);
+        }}
+        className={`w-full flex items-center justify-between py-4 text-left group transition-colors ${isSelected ? "bg-accent-light/30 -mx-3 px-3 rounded-lg" : ""}`}
       >
-        <div className="flex items-baseline gap-2 min-w-0">
+        <div className="flex items-center gap-2 min-w-0">
           <span className="font-mono text-sm font-medium whitespace-nowrap">
             {model.name}
           </span>
           <span className="font-mono text-xs text-accent whitespace-nowrap">
             {model.capacity}
           </span>
+          {hasImages && <span className="text-[10px] text-muted/60">📷</span>}
           <span className="text-xs text-muted truncate hidden sm:inline">
             · {model.target}
           </span>
@@ -84,7 +89,7 @@ function ModelAccordion({ model }: { model: ModelType }) {
   );
 }
 
-function SupremeSpecsCard({ product }: { product: ProductType }) {
+function SupremeSpecsCard({ product, onSelect, isSelected }: { product: ProductType; onSelect?: () => void; isSelected?: boolean }) {
   const [open, setOpen] = useState(false);
   const supremeSpecs = "supremeSpecs" in product ? (product as any).supremeSpecs : null;
   if (!supremeSpecs) return null;
@@ -107,9 +112,9 @@ function SupremeSpecsCard({ product }: { product: ProductType }) {
   };
 
   return (
-    <div className="rounded-2xl border border-accent/20 bg-accent-light/30 overflow-hidden">
+    <div className={`rounded-2xl border overflow-hidden ${isSelected ? "border-accent bg-accent-light/50" : "border-accent/20 bg-accent-light/30"}`}>
       <button
-        onClick={() => setOpen(!open)}
+        onClick={() => { setOpen(!open); if (onSelect) onSelect(); }}
         className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-accent-light/50 transition-colors"
       >
         <div>
@@ -167,8 +172,29 @@ function ProductSection({
   index: number;
 }) {
   const [activeImage, setActiveImage] = useState(0);
+  const [selectedModelIdx, setSelectedModelIdx] = useState<number | null>(null);
   const isReversed = index % 2 === 1;
   const compatibleBrands = "compatibleBrands" in product ? (product as any).compatibleBrands as string[] : null;
+
+  // Determine which images to show based on selected model
+  const selectedModel = selectedModelIdx !== null ? product.models[selectedModelIdx] : null;
+  const modelImages = selectedModel && "images" in selectedModel ? (selectedModel as any).images as string[] : [];
+  const supremeImages = "supremeImages" in product ? (product as any).supremeImages as string[] : [];
+  const displayImages = selectedModelIdx === -1
+    ? supremeImages
+    : modelImages.length > 0
+      ? modelImages
+      : [product.image, ...product.gallery.filter(Boolean)];
+
+  function handleModelSelect(idx: number) {
+    if (selectedModelIdx === idx) {
+      setSelectedModelIdx(null);
+      setActiveImage(0);
+    } else {
+      setSelectedModelIdx(idx);
+      setActiveImage(0);
+    }
+  }
 
   return (
     <section
@@ -272,13 +298,9 @@ function ProductSection({
                     transition={{ duration: 0.3 }}
                     className="relative aspect-[4/3] w-full overflow-hidden bg-background flex items-center justify-center"
                   >
-                    {(activeImage === 0 ? product.image : product.gallery[activeImage - 1]) ? (
+                    {displayImages[activeImage] ? (
                     <img
-                      src={
-                        activeImage === 0
-                          ? product.image
-                          : product.gallery[activeImage - 1]
-                      }
+                      src={displayImages[activeImage]}
                       alt={product.nameKr}
                       className="h-full w-full object-contain"
                       loading="lazy"
@@ -291,11 +313,29 @@ function ProductSection({
               </div>
             </div>
 
+            {/* Selected model label */}
+            {selectedModel && (
+              <div className="mt-3 flex items-center gap-2">
+                <span className="text-xs font-mono text-accent">{selectedModel.name} · {selectedModel.capacity}</span>
+                <button onClick={() => { setSelectedModelIdx(null); setActiveImage(0); }} className="text-[10px] text-muted hover:text-foreground transition-colors">
+                  전체 보기
+                </button>
+              </div>
+            )}
+            {selectedModelIdx === -1 && (
+              <div className="mt-3 flex items-center gap-2">
+                <span className="text-xs font-mono text-accent">Supreme 시리즈</span>
+                <button onClick={() => { setSelectedModelIdx(null); setActiveImage(0); }} className="text-[10px] text-muted hover:text-foreground transition-colors">
+                  전체 보기
+                </button>
+              </div>
+            )}
+
             {/* Thumbnail strip */}
-            <div className="mt-4 flex gap-2">
-              {[product.image, ...product.gallery].map((img, i) => (
+            <div className="mt-4 flex gap-2 flex-wrap">
+              {displayImages.map((img, i) => (
                 <button
-                  key={i}
+                  key={`${selectedModelIdx}-${i}`}
                   onClick={() => setActiveImage(i)}
                   className={`overflow-hidden rounded-xl border transition-all ${
                     activeImage === i
@@ -355,13 +395,16 @@ function ProductSection({
                   모델 라인업
                 </h3>
                 {"supremeSpecs" in product && (
-                  <SupremeSpecsCard product={product} />
+                  <SupremeSpecsCard product={product} onSelect={() => handleModelSelect(-1)} isSelected={selectedModelIdx === -1} />
                 )}
                 <div className="divide-y divide-border">
-                  {product.models.map((model) => (
-                    <ModelAccordion key={model.name} model={model} />
+                  {product.models.map((model, mIdx) => (
+                    <ModelAccordion key={model.name} model={model} isSelected={selectedModelIdx === mIdx} onSelect={() => handleModelSelect(mIdx)} />
                   ))}
                 </div>
+                {product.models.length > 0 && (
+                  <p className="mt-3 text-[11px] text-muted/50">📷 표시된 모델을 클릭하면 해당 모델의 사진을 볼 수 있습니다</p>
+                )}
               </>
             )}
           </m.div>
