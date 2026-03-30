@@ -64,10 +64,14 @@ export default function Footer() {
           variants={fadeUpVariants}
           className="mt-20 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-t border-border pt-8"
         >
-          <p className="text-xs text-muted">
-            &copy; {new Date().getFullYear()} {COMPANY_INFO.nameKr}. All rights
-            reserved.
-          </p>
+          <div className="text-xs text-muted space-y-1">
+            <p>
+              {COMPANY_INFO.nameKr} | 대표 {COMPANY_INFO.ceo} | 사업자등록번호 {COMPANY_INFO.businessNumber}
+            </p>
+            <p>
+              &copy; {new Date().getFullYear()} {COMPANY_INFO.nameKr}. All rights reserved.
+            </p>
+          </div>
           <div className="flex items-center gap-6">
             <a
               href="#"

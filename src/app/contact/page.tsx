@@ -223,7 +223,7 @@ export default function ContactPage() {
                         <div className="text-center">
                           <MapPin size={32} weight="light" className="text-muted mx-auto mb-3" />
                           <p className="text-sm font-medium">{COMPANY_INFO.address}</p>
-                          <p className="mt-1 text-xs text-muted">성수역 2번 출구 도보 5분</p>
+                          <p className="mt-1 text-xs text-muted">안산 단원구 소재</p>
                         </div>
                       </div>
                     </div>

@@ -136,12 +136,16 @@ export const BLOG_POSTS = [
 
 export const COMPANY_INFO = {
   name: "NBP_COFFEE",
-  nameKr: "엔비피 커피",
+  nameKr: "엔비피코리아",
   tagline: "완벽한 로스팅의 시작",
-  phone: "+82 (2) 6374-8291",
-  email: "nbpkorea@nbpkorea.kr",
-  address: "서울특별시 성동구 성수이로 88, 3층",
-  established: "2019",
+  phone: "031-434-6566",
+  phoneSub: "031-434-6567",
+  fax: "031-434-6568",
+  email: "nbpkorea@nbpkorea.co.kr",
+  address: "경기도 안산시 단원구 엠티브이로 8길 22",
+  ceo: "최혁순",
+  businessNumber: "119-13-28296",
+  established: "2006",
 } as const;
 
 export const FOOTER_LINKS = {

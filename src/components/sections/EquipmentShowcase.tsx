@@ -114,15 +114,14 @@ export default function EquipmentShowcase() {
           <SectionEyebrow>Equipment</SectionEyebrow>
           <ScrollReveal>
             <h2 className="mt-6 font-serif text-4xl md:text-6xl tracking-tighter leading-[0.95]">
-              정밀함을 위해
+              로스팅에 집중할 수 있게
               <br />
               만들다
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
             <p className="mt-5 text-base text-muted leading-relaxed max-w-[50ch]">
-              로스팅의 모든 변수를 제어하는 장비. 설계부터 제작까지 자체 기술력으로
-              완성합니다.
+              로스팅의 모든 변수를 제어하는 장비.
             </p>
           </ScrollReveal>
         </div>

@@ -22,10 +22,10 @@ import { COMPANY_INFO } from "@/lib/constants";
 
 const TIMELINE = [
   {
-    year: "2013",
+    year: "2006",
     title: "창업",
     description:
-      "서울의 한 카페에서 영감을 받아 커피 장비 전문 기업으로 출발. 15kg급 애프터버너 첫 모델 NK-15 출시.",
+      "경기도 안산에서 엔비피코리아 설립. 조선·자동차·철강 등 산업 현장에 연소 설비와 환경 솔루션을 제공하며 기술력을 축적.",
   },
   {
     year: "2020",
@@ -124,9 +124,9 @@ export default function AboutPage() {
                 </h2>
                 <div className="mt-8 space-y-5 text-base text-muted leading-relaxed max-w-[55ch]">
                   <p>
-                    {COMPANY_INFO.established}년, 성수동의 작은 공방에서 시작했습니다.
-                    당시 수입 로스터기를 사용하면서 느낀 점은 명확했습니다 — 한국
-                    카페 현장의 환경과 요구에 맞는 장비가 없다는 것.
+                    {COMPANY_INFO.established}년, 안산의 작은 공장에서 시작했습니다.
+                    산업 현장에서 축적한 연소 기술을 바탕으로, 커피 로스팅 현장의
+                    연기와 냄새 문제를 해결할 장비를 직접 만들기로 했습니다.
                   </p>
                   <p>
                     좁은 매장, 엄격한 환기 규제, 다품종 소량 로스팅에 대한 수요.
@@ -255,7 +255,7 @@ export default function AboutPage() {
               {[
                 { number: "120+", label: "납품 매장" },
                 { number: "1,200+", label: "개별 부품" },
-                { number: "6", label: "년 업력" },
+                { number: "20", label: "년 업력" },
                 { number: "98.7%", label: "고객 유지율" },
               ].map((stat) => (
                 <m.div key={stat.label} variants={fadeUpVariants} className="text-center md:text-left">

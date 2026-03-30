@@ -88,9 +88,9 @@ const SUPPORT_CHANNELS = [
     icon: Clock,
     title: "긴급 수리",
     description: "수도권 24시간 / 지방 48시간 이내 기사 방문",
-    action: "+82 (2) 6374-8292",
+    action: "031-434-6567",
     actionLabel: "긴급 전화",
-    href: "tel:+8226374-8292",
+    href: "tel:031-434-6567",
   },
 ];
 

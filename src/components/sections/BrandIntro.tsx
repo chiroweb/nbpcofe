@@ -31,7 +31,7 @@ export default function BrandIntro() {
             viewport={{ once: true, margin: "-100px" }}
           >
             <m.div variants={fadeUpVariants}>
-              <SectionEyebrow><span className="text-white/50">Since 2013</span></SectionEyebrow>
+              <SectionEyebrow><span className="text-white/50">Since 2006</span></SectionEyebrow>
             </m.div>
 
             <m.h2
@@ -48,9 +48,9 @@ export default function BrandIntro() {
               className="mt-10 max-w-[600px] space-y-5 text-base text-white/70 leading-relaxed"
             >
               <p>
-                NBP_COFFEE는 2013년 서울의 한 카페에서 시작했습니다. 커피를 직접 로스팅
-                장비를 직접 사용하며 느낀 불편함에서 출발해, 현장의 요구를 반영한
-                장비를 설계하고 제작합니다.
+                엔비피코리아는 2006년 경기도 안산에서 설립되었습니다. 20여 년간
+                산업 현장에서 축적한 연소 기술력을 바탕으로, 커피 로스팅 현장의
+                연기·냄새 문제를 해결하는 장비를 설계하고 제작합니다.
               </p>
               <p>
                 로스터기 한 대에 들어가는 부품은 1,200개가 넘습니다. 그 하나하나를
@@ -84,7 +84,7 @@ export default function BrandIntro() {
               </div>
               <div>
                 <span className="font-mono text-3xl md:text-4xl font-medium tracking-tight text-white">
-                  12
+                  20
                   <span className="text-accent">yr</span>
                 </span>
                 <p className="mt-1 text-xs text-white/40">업력</p>

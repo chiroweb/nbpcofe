@@ -33,9 +33,9 @@ export default function CallToAction() {
             variants={fadeUpVariants}
             className="mt-6 font-serif text-4xl md:text-6xl lg:text-7xl tracking-tighter leading-[0.9] text-white"
           >
-            함께 만들어
+            민원없는 로스팅
             <br />
-            갑니다
+            함께 만들어 갑니다
           </m.h2>
 
           <m.p
