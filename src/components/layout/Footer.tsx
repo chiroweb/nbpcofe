@@ -4,7 +4,6 @@ import { m } from "framer-motion";
 import {
   InstagramLogo,
   YoutubeLogo,
-  LinkedinLogo,
 } from "@phosphor-icons/react";
 import { COMPANY_INFO, FOOTER_LINKS } from "@/lib/constants";
 import { staggerContainer, fadeUpVariants } from "@/lib/animations";
@@ -87,25 +86,22 @@ export default function Footer() {
             </a>
             <div className="flex items-center gap-3 ml-4">
               <a
-                href="#"
+                href="https://www.instagram.com/nbpkorea_official/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted transition-colors hover:text-foreground"
                 aria-label="Instagram"
               >
                 <InstagramLogo size={18} />
               </a>
               <a
-                href="#"
+                href="https://www.youtube.com/@NBPKOREA_Official"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted transition-colors hover:text-foreground"
                 aria-label="YouTube"
               >
                 <YoutubeLogo size={18} />
-              </a>
-              <a
-                href="#"
-                className="text-muted transition-colors hover:text-foreground"
-                aria-label="LinkedIn"
-              >
-                <LinkedinLogo size={18} />
               </a>
             </div>
           </div>

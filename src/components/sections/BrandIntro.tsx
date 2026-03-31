@@ -80,7 +80,7 @@ export default function BrandIntro() {
                   1,200
                   <span className="text-accent">+</span>
                 </span>
-                <p className="mt-1 text-xs text-white/40">개별 부품</p>
+                <p className="mt-1 text-xs text-white/40">애프터버너 판매량</p>
               </div>
               <div>
                 <span className="font-mono text-3xl md:text-4xl font-medium tracking-tight text-white">
